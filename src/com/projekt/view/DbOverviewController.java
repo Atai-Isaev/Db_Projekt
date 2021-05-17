@@ -26,7 +26,7 @@ public class DbOverviewController {
     private ObservableList<Bestellung> bestellungObservableList = FXCollections.observableArrayList(bestellungDAO.getBestellungs());
     private ObservableList<Bestellung_Artikel> bestellung_artikelObservableList = FXCollections.observableArrayList(bestellung_artikelDAO.getBestellung_Artikels());
     private ObservableList<Bestände> beständeObservableList = FXCollections.observableArrayList(beständeDAO.getBeständes());
-//    private ObservableList<Geschäft> geschäftObservableList = FXCollections.observableArrayList(geschäftDAO.getBestellungs());
+    private ObservableList<Geschäft> geschäftObservableList = FXCollections.observableArrayList(geschäftDAO.getGeschäfts());
 //    private ObservableList<Hersteller> herstellerObservableList = FXCollections.observableArrayList(herstellerDAO.getBestellungs());
 //    private ObservableList<Kategorie> kategorieObservableList = FXCollections.observableArrayList(kategorieDAO.getBestellungs());
 //    private ObservableList<Kunde> kundeObservableList = FXCollections.observableArrayList(kundeDAO.getBestellungs());
@@ -111,6 +111,23 @@ public class DbOverviewController {
     private TableColumn<Bestände, Integer> beständeMengeColumn;
 
     @FXML
+    private TableView<Geschäft> geschäftTableView;
+    @FXML
+    private TableColumn<Geschäft, Integer> geschäftNrColumn;
+    @FXML
+    private TableColumn<Geschäft, String> geschäftNameColumn;
+    @FXML
+    private TableColumn<Geschäft, String> geschäftTelefonColumn;
+    @FXML
+    private TableColumn<Geschäft, String> geschäftEmailColumn;
+    @FXML
+    private TableColumn<Geschäft, String> geschäftStraßeColumn;
+    @FXML
+    private TableColumn<Geschäft, String> geschäftOrtColumn;
+    @FXML
+    private TableColumn<Geschäft, String> geschäftPLZColumn;
+
+    @FXML
     private ButtonBar buttonBar;
 
     @FXML
@@ -134,6 +151,10 @@ public class DbOverviewController {
 
     private final String[] beständePropertyName = {"GeschäftNr",
             "ArtikelNr", "Menge"};
+
+    private final String[] geschäftPropertyName = {"GeschäftNr",
+            "GeschäftName", "Telefon", "Email", "Straße",
+            "Ort", "PLZ"};
 
     public DbOverviewController() {
     }
@@ -169,6 +190,16 @@ public class DbOverviewController {
         beständeGeschäftNrColumn.setCellValueFactory(new PropertyValueFactory<>(beständePropertyName[0]));
         beständeArtikelNrColumn.setCellValueFactory(new PropertyValueFactory<>(beständePropertyName[1]));
         beständeMengeColumn.setCellValueFactory(new PropertyValueFactory<>(beständePropertyName[2]));
+
+        geschäftTableView.setItems(this.geschäftObservableList);
+        geschäftNrColumn.setCellValueFactory(new PropertyValueFactory<>(geschäftPropertyName[0]));
+        geschäftNameColumn.setCellValueFactory(new PropertyValueFactory<>(geschäftPropertyName[1]));
+        geschäftTelefonColumn.setCellValueFactory(new PropertyValueFactory<>(geschäftPropertyName[2]));
+        geschäftEmailColumn.setCellValueFactory(new PropertyValueFactory<>(geschäftPropertyName[3]));
+        geschäftStraßeColumn.setCellValueFactory(new PropertyValueFactory<>(geschäftPropertyName[4]));
+        geschäftOrtColumn.setCellValueFactory(new PropertyValueFactory<>(geschäftPropertyName[5]));
+        geschäftPLZColumn.setCellValueFactory(new PropertyValueFactory<>(geschäftPropertyName[6]));
+
     }
 
     public void setMain(Main main) {
@@ -193,5 +224,8 @@ public class DbOverviewController {
 
         beständeObservableList = FXCollections.observableArrayList(beständeDAO.getBeständes());
         beständeTableView.setItems(beständeObservableList);
+
+        geschäftObservableList= FXCollections.observableArrayList(geschäftDAO.getGeschäfts());
+        geschäftTableView.setItems(geschäftObservableList);
     }
 }

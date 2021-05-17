@@ -1,70 +1,50 @@
 package com.projekt.model;
 
+import com.projekt.connectivity.DatabaseConnection;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
 public class GeschäftDAO {
-    private int GeschäftNr;
-    private String GeschäftName;
-    private String Telefon;
-    private String Email;
-    private String Straße;
-    private String Ort;
-    private String PLZ;
+    private Geschäft createGeschäft(ResultSet rs) {
+        Geschäft g = new Geschäft();
 
-    public GeschäftDAO() {
+        try {
+            g.setGeschäftNr(rs.getInt("GeschäftNr"));
+            g.setGeschäftName(rs.getString("GeschäftName"));
+            g.setTelefon(rs.getString("Telefon"));
+            g.setEmail(rs.getString("Email"));
+            g.setStraße(rs.getString("Straße"));
+            g.setOrt(rs.getString("Ort"));
+            g.setPLZ(rs.getString("PLZ"));
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return g;
     }
 
-    public int getGeschäftNr() {
-        return GeschäftNr;
-    }
+    public List<Geschäft> getGeschäfts() {
+        String sql = "Select * from Geschäft order by GeschäftNr";
+        List<Geschäft> list = new ArrayList<>();
+        try {
+            DatabaseConnection databaseConnection = new DatabaseConnection();
+            Connection con = databaseConnection.getConnection();
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
 
-    public void setGeschäftNr(int geschäftNr) {
-        GeschäftNr = geschäftNr;
-    }
-
-    public String getGeschäftName() {
-        return GeschäftName;
-    }
-
-    public void setGeschäftName(String geschäftName) {
-        GeschäftName = geschäftName;
-    }
-
-    public String getTelefon() {
-        return Telefon;
-    }
-
-    public void setTelefon(String telefon) {
-        Telefon = telefon;
-    }
-
-    public String getEmail() {
-        return Email;
-    }
-
-    public void setEmail(String email) {
-        Email = email;
-    }
-
-    public String getStraße() {
-        return Straße;
-    }
-
-    public void setStraße(String straße) {
-        Straße = straße;
-    }
-
-    public String getOrt() {
-        return Ort;
-    }
-
-    public void setOrt(String ort) {
-        Ort = ort;
-    }
-
-    public String getPLZ() {
-        return PLZ;
-    }
-
-    public void setPLZ(String PLZ) {
-        this.PLZ = PLZ;
+            while (rs.next()) {
+                Geschäft g = createGeschäft(rs);
+                list.add(g);
+            }
+            rs.close();
+            con.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return list;
     }
 }
