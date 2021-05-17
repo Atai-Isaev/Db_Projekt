@@ -28,7 +28,7 @@ public class DbOverviewController {
     private ObservableList<Bestände> beständeObservableList = FXCollections.observableArrayList(beständeDAO.getBeständes());
     private ObservableList<Geschäft> geschäftObservableList = FXCollections.observableArrayList(geschäftDAO.getGeschäfts());
     private ObservableList<Hersteller> herstellerObservableList = FXCollections.observableArrayList(herstellerDAO.getHerstellers());
-//    private ObservableList<Kategorie> kategorieObservableList = FXCollections.observableArrayList(kategorieDAO.getBestellungs());
+    private ObservableList<Kategorie> kategorieObservableList = FXCollections.observableArrayList(kategorieDAO.getKategories());
 //    private ObservableList<Kunde> kundeObservableList = FXCollections.observableArrayList(kundeDAO.getBestellungs());
 //    private ObservableList<Mitarbeiter> mitarbeiterObservableList = FXCollections.observableArrayList(mitarbeiterDAO.getBestellungs());
 
@@ -135,6 +135,13 @@ public class DbOverviewController {
     private TableColumn<Hersteller, String> herstellerNameColumn;
 
     @FXML
+    private TableView<Kategorie> kategorieTableView;
+    @FXML
+    private TableColumn<Kategorie, Integer> kategorieNrColumn;
+    @FXML
+    private TableColumn<Kategorie, String> kategorieNameColumn;
+
+    @FXML
     private ButtonBar buttonBar;
 
     @FXML
@@ -165,6 +172,9 @@ public class DbOverviewController {
 
     private final String[] herstellerPropertyName = {"HerstellerNr",
             "HerstellerName"};
+
+    private final String[] kategoriePropertyName = {"KategorieNr",
+            "KategorieName"};
 
     public DbOverviewController() {
     }
@@ -214,6 +224,10 @@ public class DbOverviewController {
         herstellerNrColumn.setCellValueFactory(new PropertyValueFactory<>(herstellerPropertyName[0]));
         herstellerNameColumn.setCellValueFactory(new PropertyValueFactory<>(herstellerPropertyName[1]));
 
+        kategorieTableView.setItems(this.kategorieObservableList);
+        kategorieNrColumn.setCellValueFactory(new PropertyValueFactory<>(kategoriePropertyName[0]));
+        kategorieNameColumn.setCellValueFactory(new PropertyValueFactory<>(kategoriePropertyName[1]));
+
     }
 
     public void setMain(Main main) {
@@ -244,5 +258,8 @@ public class DbOverviewController {
 
         herstellerObservableList= FXCollections.observableArrayList(herstellerDAO.getHerstellers());
         herstellerTableView.setItems(herstellerObservableList);
+
+        kategorieObservableList= FXCollections.observableArrayList(kategorieDAO.getKategories());
+        kategorieTableView.setItems(kategorieObservableList);
     }
 }
