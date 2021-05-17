@@ -29,7 +29,7 @@ public class DbOverviewController {
     private ObservableList<Geschäft> geschäftObservableList = FXCollections.observableArrayList(geschäftDAO.getGeschäfts());
     private ObservableList<Hersteller> herstellerObservableList = FXCollections.observableArrayList(herstellerDAO.getHerstellers());
     private ObservableList<Kategorie> kategorieObservableList = FXCollections.observableArrayList(kategorieDAO.getKategories());
-//    private ObservableList<Kunde> kundeObservableList = FXCollections.observableArrayList(kundeDAO.getBestellungs());
+    private ObservableList<Kunde> kundeObservableList = FXCollections.observableArrayList(kundeDAO.getKundes());
 //    private ObservableList<Mitarbeiter> mitarbeiterObservableList = FXCollections.observableArrayList(mitarbeiterDAO.getBestellungs());
 
     private Main mainApp;
@@ -142,6 +142,26 @@ public class DbOverviewController {
     private TableColumn<Kategorie, String> kategorieNameColumn;
 
     @FXML
+    private TableView<Kunde> kundeTableView;
+    @FXML
+    private TableColumn<Kunde, Integer> kundeNrColumn;
+    @FXML
+    private TableColumn<Kunde, String> kundeVornameColumn;
+    @FXML
+    private TableColumn<Kunde, String> kundeNachnameColumn;
+    @FXML
+    private TableColumn<Kunde, String> kundeTelefonColumn;
+    @FXML
+    private TableColumn<Kunde, String> kundeEmailColumn;
+    @FXML
+    private TableColumn<Kunde, String> kundeStraßeColumn;
+    @FXML
+    private TableColumn<Kunde, String> kundeOrtColumn;
+    @FXML
+    private TableColumn<Kunde, String> kundePLZColumn;
+
+
+    @FXML
     private ButtonBar buttonBar;
 
     @FXML
@@ -175,6 +195,10 @@ public class DbOverviewController {
 
     private final String[] kategoriePropertyName = {"KategorieNr",
             "KategorieName"};
+
+    private final String[] kundePropertyName = {"KundeNr",
+            "Vorname", "Nachname", "Telefon", "Email", "Straße",
+            "Ort", "PLZ"};
 
     public DbOverviewController() {
     }
@@ -228,6 +252,16 @@ public class DbOverviewController {
         kategorieNrColumn.setCellValueFactory(new PropertyValueFactory<>(kategoriePropertyName[0]));
         kategorieNameColumn.setCellValueFactory(new PropertyValueFactory<>(kategoriePropertyName[1]));
 
+        kundeTableView.setItems(this.kundeObservableList);
+        kundeNrColumn.setCellValueFactory(new PropertyValueFactory<>(kundePropertyName[0]));
+        kundeVornameColumn.setCellValueFactory(new PropertyValueFactory<>(kundePropertyName[1]));
+        kundeNachnameColumn.setCellValueFactory(new PropertyValueFactory<>(kundePropertyName[2]));
+        kundeTelefonColumn.setCellValueFactory(new PropertyValueFactory<>(kundePropertyName[3]));
+        kundeEmailColumn.setCellValueFactory(new PropertyValueFactory<>(kundePropertyName[4]));
+        kundeStraßeColumn.setCellValueFactory(new PropertyValueFactory<>(kundePropertyName[5]));
+        kundeOrtColumn.setCellValueFactory(new PropertyValueFactory<>(kundePropertyName[6]));
+        kundePLZColumn.setCellValueFactory(new PropertyValueFactory<>(kundePropertyName[7]));
+
     }
 
     public void setMain(Main main) {
@@ -261,5 +295,8 @@ public class DbOverviewController {
 
         kategorieObservableList= FXCollections.observableArrayList(kategorieDAO.getKategories());
         kategorieTableView.setItems(kategorieObservableList);
+
+        kundeObservableList= FXCollections.observableArrayList(kundeDAO.getKundes());
+        kundeTableView.setItems(kundeObservableList);
     }
 }

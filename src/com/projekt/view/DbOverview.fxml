@@ -157,16 +157,16 @@
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <TableView layoutX="62.0" layoutY="21.0" prefHeight="306.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <TableView fx:id="kundeTableView" layoutX="62.0" layoutY="21.0" prefHeight="306.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <columns>
-                                    <TableColumn prefWidth="69.0" text="KundeNr" />
-                                    <TableColumn prefWidth="131.0" text="Vorname" />
-                                    <TableColumn prefWidth="131.0" text="Nachname" />
-                                    <TableColumn prefWidth="110.0" text="Telefon" />
-                                    <TableColumn prefWidth="89.0" text="Email" />
-                                    <TableColumn prefWidth="75.0" text="Straße" />
-                                    <TableColumn prefWidth="75.0" text="Ort" />
-                                    <TableColumn prefWidth="75.0" text="PLZ" />
+                                    <TableColumn fx:id="kundeNrColumn" prefWidth="69.0" text="KundeNr" />
+                                    <TableColumn fx:id="kundeVornameColumn" prefWidth="131.0" text="Vorname" />
+                                    <TableColumn fx:id="kundeNachnameColumn" prefWidth="131.0" text="Nachname" />
+                                    <TableColumn fx:id="kundeTelefonColumn" prefWidth="110.0" text="Telefon" />
+                                    <TableColumn fx:id="kundeEmailColumn" prefWidth="89.0" text="Email" />
+                                    <TableColumn fx:id="kundeStraßeColumn" prefWidth="75.0" text="Straße" />
+                                    <TableColumn fx:id="kundeOrtColumn" prefWidth="75.0" text="Ort" />
+                                    <TableColumn fx:id="kundePLZColumn" prefWidth="75.0" text="PLZ" />
                                  </columns>
                                  <columnResizePolicy>
                                     <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
