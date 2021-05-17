@@ -24,7 +24,7 @@ public class DbOverviewController {
 
     private ObservableList<Artikel> artikelObservableList = FXCollections.observableArrayList(artikelDAO.getArtikels());
     private ObservableList<Bestellung> bestellungObservableList = FXCollections.observableArrayList(bestellungDAO.getBestellungs());
-//    private ObservableList<Bestellung_Artikel> bestellung_artikelObservableList = FXCollections.observableArrayList(bestellung_artikelDAO.getBestellungs());
+    private ObservableList<Bestellung_Artikel> bestellung_artikelObservableList = FXCollections.observableArrayList(bestellung_artikelDAO.getBestellung_Artikels());
 //    private ObservableList<Bestände> beständeObservableList = FXCollections.observableArrayList(beständeDAO.getBestellungs());
 //    private ObservableList<Geschäft> geschäftObservableList = FXCollections.observableArrayList(geschäftDAO.getBestellungs());
 //    private ObservableList<Hersteller> herstellerObservableList = FXCollections.observableArrayList(herstellerDAO.getBestellungs());
@@ -88,6 +88,20 @@ public class DbOverviewController {
     private TableColumn<Bestellung, Integer> bestellungMitarbeiterNrColumn;
 
     @FXML
+    private TableView<Bestellung_Artikel> bestellung_ArtikelTableView;
+    @FXML
+    private TableColumn<Bestellung_Artikel, Integer> bestellung_ArtikelBestellungNrColumn;
+    @FXML
+    private TableColumn<Bestellung_Artikel, Integer> bestellung_ArtikelArtikelNrColumn;
+    @FXML
+    private TableColumn<Bestellung_Artikel, Integer> bestellung_ArtikelMengeColumn;
+    @FXML
+    private TableColumn<Bestellung_Artikel, BigDecimal> bestellung_ArtikelListenpreisColumn;
+    @FXML
+    private TableColumn<Bestellung_Artikel, BigDecimal> bestellung_ArtikelRabattColumn;
+
+
+    @FXML
     private ButtonBar buttonBar;
 
     @FXML
@@ -106,6 +120,8 @@ public class DbOverviewController {
             "KundeNr", "Bestellstatus", "Bestelldatum", "Bedarfsdatum",
             "Versanddatum", "GeschäftNr", "MitarbeiterNr"};
 
+    private final String[] bestellung_ArtikelPropertyName = {"BestellungNr",
+            "ArtikelNr", "Menge", "Listenpreis", "Rabatt"};
 
     public DbOverviewController() {
     }
@@ -129,6 +145,14 @@ public class DbOverviewController {
         versanddatumColumn.setCellValueFactory(new PropertyValueFactory<>(bestellungPropertyName[5]));
         bestellungGeschäftNrColumn.setCellValueFactory(new PropertyValueFactory<>(bestellungPropertyName[6]));
         bestellungMitarbeiterNrColumn.setCellValueFactory(new PropertyValueFactory<>(bestellungPropertyName[7]));
+
+        bestellung_ArtikelTableView.setItems(this.bestellung_artikelObservableList);
+        bestellung_ArtikelBestellungNrColumn.setCellValueFactory(new PropertyValueFactory<>(bestellung_ArtikelPropertyName[0]));
+        bestellung_ArtikelArtikelNrColumn.setCellValueFactory(new PropertyValueFactory<>(bestellung_ArtikelPropertyName[1]));
+        bestellung_ArtikelMengeColumn.setCellValueFactory(new PropertyValueFactory<>(bestellung_ArtikelPropertyName[2]));
+        bestellung_ArtikelListenpreisColumn.setCellValueFactory(new PropertyValueFactory<>(bestellung_ArtikelPropertyName[3]));
+        bestellung_ArtikelRabattColumn.setCellValueFactory(new PropertyValueFactory<>(bestellung_ArtikelPropertyName[4]));
+
     }
 
     public void setMain(Main main) {
@@ -147,5 +171,8 @@ public class DbOverviewController {
 
         bestellungObservableList = FXCollections.observableArrayList(bestellungDAO.getBestellungs());
         bestellungTableView.setItems(bestellungObservableList);
+
+        bestellung_artikelObservableList = FXCollections.observableArrayList(bestellung_artikelDAO.getBestellung_Artikels());
+        bestellung_ArtikelTableView.setItems(bestellung_artikelObservableList);
     }
 }
