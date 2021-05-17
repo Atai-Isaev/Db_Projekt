@@ -24,7 +24,7 @@ public class BeständeDAO {
     }
 
     public List<Bestände> getBeständes() {
-        String sql = "Select * from Bestände";
+        String sql = "Select * from Bestände order by GeschäftNr";
         List<Bestände> list = new ArrayList<>();
         try {
             DatabaseConnection databaseConnection = new DatabaseConnection();

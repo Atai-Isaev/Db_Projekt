@@ -1,25 +1,45 @@
 package com.projekt.model;
 
+import com.projekt.connectivity.DatabaseConnection;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
 public class HerstellerDAO {
-    private int HerstellerNr;
-    private String HerstellerName;
+    private Hersteller createHersteller(ResultSet rs) {
+        Hersteller h = new Hersteller();
 
-    public HerstellerDAO() {
+        try {
+            h.setHerstellerNr(rs.getInt("HerstellerNr"));
+            h.setHerstellerName(rs.getString("HerstellerName"));
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return h;
     }
 
-    public int getHerstellerNr() {
-        return HerstellerNr;
-    }
+    public List<Hersteller> getHerstellers() {
+        String sql = "Select * from Hersteller order by HerstellerNr";
+        List<Hersteller> list = new ArrayList<>();
+        try {
+            DatabaseConnection databaseConnection = new DatabaseConnection();
+            Connection con = databaseConnection.getConnection();
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
 
-    public void setHerstellerNr(int herstellerNr) {
-        HerstellerNr = herstellerNr;
-    }
-
-    public String getHerstellerName() {
-        return HerstellerName;
-    }
-
-    public void setHerstellerName(String herstellerName) {
-        HerstellerName = herstellerName;
+            while (rs.next()) {
+                Hersteller h = createHersteller(rs);
+                list.add(h);
+            }
+            rs.close();
+            con.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return list;
     }
 }

@@ -123,10 +123,10 @@
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <TableView layoutX="178.0" layoutY="39.0" prefHeight="306.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <TableView fx:id="herstellerTableView" layoutX="178.0" layoutY="39.0" prefHeight="306.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <columns>
-                                    <TableColumn prefWidth="75.0" text="HerstellerNr" />
-                                    <TableColumn prefWidth="75.0" text="HerstellerName" />
+                                    <TableColumn fx:id="herstellerNrColumn" prefWidth="75.0" text="HerstellerNr" />
+                                    <TableColumn fx:id="herstellerNameColumn" prefWidth="75.0" text="HerstellerName" />
                                  </columns>
                                  <columnResizePolicy>
                                     <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
