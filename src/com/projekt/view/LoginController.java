@@ -76,6 +76,8 @@ public class LoginController {
                             mainApp.setRole(DbRole.ADMIN);
                             break;
                     }
+
+                    mainApp.showDb();
                 } else {
                     loginInfoLabel.setText("Invalid login. Please try again!");
                 }

@@ -1,6 +1,7 @@
 package com.projekt;
 
 import com.projekt.model.DbRole;
+import com.projekt.view.DbOverviewController;
 import com.projekt.view.LoginController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -23,6 +24,24 @@ public class Main extends Application {
         this.primaryStage.setTitle("JDBC GUI App");
 
         showLogin();
+    }
+
+    public void showDb() {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("view/DbOverview.fxml"));
+            Parent dbOverview = loader.load();
+
+            Scene scene = new Scene(dbOverview);
+            primaryStage.setScene(scene);
+            primaryStage.show();
+
+            DbOverviewController controller = loader.getController();
+            controller.setMain(this);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void showLogin() {
