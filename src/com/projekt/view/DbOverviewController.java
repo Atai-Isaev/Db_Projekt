@@ -5,10 +5,17 @@ import com.projekt.model.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.math.BigDecimal;
+import java.sql.SQLException;
 import java.util.Date;
 
 public class DbOverviewController {
@@ -32,7 +39,7 @@ public class DbOverviewController {
     private ObservableList<Kunde> kundeObservableList = FXCollections.observableArrayList(kundeDAO.getKundes());
     private ObservableList<Mitarbeiter> mitarbeiterObservableList = FXCollections.observableArrayList(mitarbeiterDAO.getMitarbeiters());
 
-    private Main mainApp;
+    private Main main;
 
     @FXML
     private Tab artikelTab;
@@ -183,6 +190,9 @@ public class DbOverviewController {
     private ButtonBar buttonBar;
 
     @FXML
+    private Button exportButton;
+
+    @FXML
     private Button newButton;
 
     @FXML
@@ -296,42 +306,213 @@ public class DbOverviewController {
 
     }
 
+    @FXML
+    private void handleUpdateAllData() {
+        artikelObservableList.setAll(artikelDAO.getArtikels());
+        bestellungObservableList.setAll(bestellungDAO.getBestellungs());
+        bestellung_artikelObservableList.setAll(bestellung_artikelDAO.getBestellung_Artikels());
+        beständeObservableList.setAll(beständeDAO.getBeständes());
+        geschäftObservableList.setAll(geschäftDAO.getGeschäfts());
+        herstellerObservableList.setAll(herstellerDAO.getHerstellers());
+        kategorieObservableList.setAll(kategorieDAO.getKategories());
+        kundeObservableList.setAll(kundeDAO.getKundes());
+        mitarbeiterObservableList.setAll(mitarbeiterDAO.getMitarbeiters());
+    }
+
+    @FXML
+    private void handleExportData(){
+        // TODO: 29.05.2021 XML Export Data
+    }
+
+    @FXML
+    private void handleDeleteButton() throws SQLException {
+        // TODO: 28.05.2021 Handle delete button
+        if (artikelTab.isSelected()) {
+            Artikel selectedArtikel = artikelTableView.getSelectionModel().getSelectedItem();
+            if (selectedArtikel != null) {
+                ArtikelDAO artikelDAO = new ArtikelDAO();
+                artikelDAO.deleteArtikel(selectedArtikel, main.getUsername(), main.getPassword());
+            } else {
+                alertNoArtikelSelection("Artikel");
+            }
+        }
+    }
+
+    @FXML
+    private void handleNewButton() throws IOException {
+
+        if (artikelTab.isSelected()) {
+            handleNewArtikel();
+        }
+        // TODO: 29.05.2021 Rest if for each tab implement
+    }
+
+    private void handleNewArtikel() throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Main.class.getResource("view/ArtikelCreateDialog.fxml"));
+        AnchorPane page = loader.load();
+
+        Stage dialogStage = new Stage();
+        dialogStage.setTitle("Artikel erstellen");
+        dialogStage.initModality(Modality.WINDOW_MODAL);
+        dialogStage.setScene(new Scene(page));
+
+        ArtikelCreateDialogController controller = loader.getController();
+        controller.setDbOverviewController(this);
+        controller.setMain(this.main);
+        controller.setStage(dialogStage);
+        dialogStage.showAndWait();
+    }
+
+    public void handleNewBestellung() {
+        // TODO: 29.05.2021 new Bestellung
+    }
+
+    public void handleNewBestellungArtikel() {
+        // TODO: 29.05.2021 new BA
+    }
+
+    public void handleNewBestände() {
+        // TODO: 29.05.2021 new Bestaende
+    }
+
+    public void handleNewGeschäft() {
+        // TODO: 29.05.2021 new Geshaeft
+    }
+
+    public void handleNewHersteller() {
+        // TODO: 29.05.2021 new Hersteller
+    }
+
+    public void handleNewKategorie() {
+        // TODO: 29.05.2021 new Kategorie
+    }
+
+    public void handleNewKunde() {
+        // TODO: 29.05.2021 new Kunde
+    }
+
+    public void handleNewMitarbeiter() {
+        // TODO: 29.05.2021 new Mitarbeiter
+    }
+
+    @FXML
+    private void handleEditButton() throws IOException {
+
+        if (artikelTab.isSelected()) {
+            handleEditArtikel();
+        }
+        // TODO: 28.05.2021 Rest Handle edit button impl
+    }
+
+    private void handleEditArtikel() throws IOException {
+        Artikel selectedArtikel = artikelTableView.getSelectionModel().getSelectedItem();
+
+        if (selectedArtikel != null) {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("view/ArtikelCreateDialog.fxml"));
+            AnchorPane page = loader.load();
+
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Artikel editieren");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.setScene(new Scene(page));
+
+            ArtikelCreateDialogController controller = loader.getController();
+            controller.setDbOverviewController(this);
+            controller.setMain(this.main);
+            controller.setTempArtikel(selectedArtikel);
+
+            controller.setStage(dialogStage);
+            dialogStage.showAndWait();
+        } else {
+            alertNoArtikelSelection("Artikel");
+        }
+    }
+
+    private void alertNoArtikelSelection(String type) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("No Selection");
+        alert.setHeaderText("No "+type+" Selected");
+        alert.setContentText("Please select a "+type+" in the table.");
+        alert.showAndWait();
+    }
+
+    public void handleEditBestellung() {
+        // TODO: 29.05.2021 edit Bestellung
+    }
+
+    public void handleEditBestellungArtikel() {
+        // TODO: 29.05.2021 edit BA
+    }
+
+    public void handleEditBestände() {
+        // TODO: 29.05.2021 edit Bestaende
+    }
+
+    public void handleEditGeschäft() {
+        // TODO: 29.05.2021 edit Geshaeft
+    }
+
+    public void handleEditHersteller() {
+        // TODO: 29.05.2021 edit Hersteller
+    }
+
+    public void handleEditKategorie() {
+        // TODO: 29.05.2021 edit Kategorie
+    }
+
+    public void handleEditKunde() {
+        // TODO: 29.05.2021 edit Kunde
+    }
+
+    public void handleEditMitarbeiter() {
+        // TODO: 29.05.2021 edit Mitarbeiter
+    }
+
     public void setMain(Main main) {
-        this.mainApp = main;
-        if (mainApp.getRole() == DbRole.READER) {
+        this.main = main;
+        if (this.main.getRole() == DbRole.READER) {
+            buttonBar.getButtons().remove(exportButton);
             buttonBar.getButtons().remove(newButton);
             buttonBar.getButtons().remove(editButton);
             buttonBar.getButtons().remove(deleteButton);
         }
     }
 
-    @FXML
-    private void handleUpdateAllData() {
-        artikelObservableList = FXCollections.observableArrayList(artikelDAO.getArtikels());
-        artikelTableView.setItems(artikelObservableList);
+    public ObservableList<Artikel> getArtikelObservableList() {
+        return artikelObservableList;
+    }
 
-        bestellungObservableList = FXCollections.observableArrayList(bestellungDAO.getBestellungs());
-        bestellungTableView.setItems(bestellungObservableList);
+    public ObservableList<Bestellung> getBestellungObservableList() {
+        return bestellungObservableList;
+    }
 
-        bestellung_artikelObservableList = FXCollections.observableArrayList(bestellung_artikelDAO.getBestellung_Artikels());
-        bestellung_ArtikelTableView.setItems(bestellung_artikelObservableList);
+    public ObservableList<Bestellung_Artikel> getBestellung_artikelObservableList() {
+        return bestellung_artikelObservableList;
+    }
 
-        beständeObservableList = FXCollections.observableArrayList(beständeDAO.getBeständes());
-        beständeTableView.setItems(beständeObservableList);
+    public ObservableList<Bestände> getBeständeObservableList() {
+        return beständeObservableList;
+    }
 
-        geschäftObservableList= FXCollections.observableArrayList(geschäftDAO.getGeschäfts());
-        geschäftTableView.setItems(geschäftObservableList);
+    public ObservableList<Geschäft> getGeschäftObservableList() {
+        return geschäftObservableList;
+    }
 
-        herstellerObservableList= FXCollections.observableArrayList(herstellerDAO.getHerstellers());
-        herstellerTableView.setItems(herstellerObservableList);
+    public ObservableList<Hersteller> getHerstellerObservableList() {
+        return herstellerObservableList;
+    }
 
-        kategorieObservableList= FXCollections.observableArrayList(kategorieDAO.getKategories());
-        kategorieTableView.setItems(kategorieObservableList);
+    public ObservableList<Kategorie> getKategorieObservableList() {
+        return kategorieObservableList;
+    }
 
-        kundeObservableList= FXCollections.observableArrayList(kundeDAO.getKundes());
-        kundeTableView.setItems(kundeObservableList);
+    public ObservableList<Kunde> getKundeObservableList() {
+        return kundeObservableList;
+    }
 
-        mitarbeiterObservableList= FXCollections.observableArrayList(mitarbeiterDAO.getMitarbeiters());
-        mitarbeiterTableView.setItems(mitarbeiterObservableList);
+    public ObservableList<Mitarbeiter> getMitarbeiterObservableList() {
+        return mitarbeiterObservableList;
     }
 }

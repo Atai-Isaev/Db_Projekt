@@ -205,9 +205,10 @@
          <bottom>
             <ButtonBar fx:id="buttonBar" prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
               <buttons>
-                <Button fx:id="newButton" contentDisplay="CENTER" mnemonicParsing="false" text="New" />
-                  <Button fx:id="editButton" contentDisplay="CENTER" mnemonicParsing="false" text="Edit" />
-                  <Button fx:id="deleteButton" contentDisplay="CENTER" mnemonicParsing="false" text="Delete" />
+                  <Button fx:id="exportButton" mnemonicParsing="false" onAction="#handleExportData" text="Export" />
+                <Button fx:id="newButton" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleNewButton" text="New" />
+                  <Button fx:id="editButton" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleEditButton" text="Edit" />
+                  <Button fx:id="deleteButton" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleDeleteButton" text="Delete" />
                   <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleUpdateAllData" text="Update All Data" />
               </buttons>
                <BorderPane.margin>
