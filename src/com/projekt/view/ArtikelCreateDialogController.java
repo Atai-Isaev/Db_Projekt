@@ -64,7 +64,7 @@ public class ArtikelCreateDialogController {
             if (tempArtikel != null) artikel.setArtikelNr(Integer.parseInt(artikelNrLabel.getText()));
             artikel.setArtikelName(artikelNameField.getText());
             artikel.setHerstellerNr(herstellerNrChoiceBox.getSelectionModel().getSelectedItem());
-            artikel.setKategorieNr(herstellerNrChoiceBox.getSelectionModel().getSelectedItem());
+            artikel.setKategorieNr(kategorieNrChoiceBox.getSelectionModel().getSelectedItem());
             artikel.setModelljahr(Integer.parseInt(modelljahrField.getText()));
             artikel.setListenpreis(new BigDecimal(listenpreisField.getText()));
 

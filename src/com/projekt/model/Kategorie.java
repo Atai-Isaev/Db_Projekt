@@ -1,5 +1,10 @@
 package com.projekt.model;
 
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name = "Kategorie")
 public class Kategorie {
     private int KategorieNr;
     private String KategorieName;
@@ -7,15 +12,11 @@ public class Kategorie {
     public Kategorie() {
     }
 
-    public Kategorie(int kategorieNr, String kategorieName) {
-        KategorieNr = kategorieNr;
-        KategorieName = kategorieName;
-    }
-
     public int getKategorieNr() {
         return KategorieNr;
     }
 
+    @XmlAttribute(name = "KategorieNr")
     public void setKategorieNr(int kategorieNr) {
         KategorieNr = kategorieNr;
     }
@@ -24,6 +25,7 @@ public class Kategorie {
         return KategorieName;
     }
 
+    @XmlElement(name = "KategorieName")
     public void setKategorieName(String kategorieName) {
         KategorieName = kategorieName;
     }

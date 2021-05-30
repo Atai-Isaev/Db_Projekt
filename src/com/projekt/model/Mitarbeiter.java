@@ -1,5 +1,10 @@
 package com.projekt.model;
 
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name = "Mitarbeiter")
 public class Mitarbeiter {
     private int MitarbeiterNr;
     private String Vorname;
@@ -13,21 +18,11 @@ public class Mitarbeiter {
     public Mitarbeiter() {
     }
 
-    public Mitarbeiter(int mitarbeiterNr, String vorname, String nachname, String email, String telefon, int aktiv, int geschäftNr, int geschäftsführerNr) {
-        MitarbeiterNr = mitarbeiterNr;
-        Vorname = vorname;
-        Nachname = nachname;
-        Email = email;
-        Telefon = telefon;
-        Aktiv = aktiv;
-        GeschäftNr = geschäftNr;
-        GeschäftsführerNr = geschäftsführerNr;
-    }
-
     public int getMitarbeiterNr() {
         return MitarbeiterNr;
     }
 
+    @XmlAttribute(name = "MitarbeiterNr")
     public void setMitarbeiterNr(int mitarbeiterNr) {
         MitarbeiterNr = mitarbeiterNr;
     }
@@ -36,6 +31,7 @@ public class Mitarbeiter {
         return Vorname;
     }
 
+    @XmlElement(name = "Vorname")
     public void setVorname(String vorname) {
         Vorname = vorname;
     }
@@ -44,6 +40,7 @@ public class Mitarbeiter {
         return Nachname;
     }
 
+    @XmlElement(name = "Nachname")
     public void setNachname(String nachname) {
         Nachname = nachname;
     }
@@ -52,6 +49,7 @@ public class Mitarbeiter {
         return Email;
     }
 
+    @XmlElement(name = "Email")
     public void setEmail(String email) {
         Email = email;
     }
@@ -60,6 +58,7 @@ public class Mitarbeiter {
         return Telefon;
     }
 
+    @XmlElement(name = "Telefon")
     public void setTelefon(String telefon) {
         Telefon = telefon;
     }
@@ -68,6 +67,7 @@ public class Mitarbeiter {
         return Aktiv;
     }
 
+    @XmlElement(name = "Aktiv")
     public void setAktiv(int aktiv) {
         Aktiv = aktiv;
     }
@@ -76,6 +76,7 @@ public class Mitarbeiter {
         return GeschäftNr;
     }
 
+    @XmlElement(name = "GeschäftNr")
     public void setGeschäftNr(int geschäftNr) {
         GeschäftNr = geschäftNr;
     }
@@ -84,6 +85,7 @@ public class Mitarbeiter {
         return GeschäftsführerNr;
     }
 
+    @XmlElement(name = "GeschäftsführerNr")
     public void setGeschäftsführerNr(int geschäftsführerNr) {
         GeschäftsführerNr = geschäftsführerNr;
     }

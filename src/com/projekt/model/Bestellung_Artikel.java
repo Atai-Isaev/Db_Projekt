@@ -1,7 +1,11 @@
 package com.projekt.model;
 
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.math.BigDecimal;
 
+@XmlRootElement(name = "Bestellung_Artikel")
 public class Bestellung_Artikel {
     private int BestellungNr;
     private int ArtikelNr;
@@ -12,18 +16,11 @@ public class Bestellung_Artikel {
     public Bestellung_Artikel() {
     }
 
-    public Bestellung_Artikel(int bestellungNr, int artikelNr, int menge, BigDecimal listenpreis, BigDecimal rabatt) {
-        BestellungNr = bestellungNr;
-        ArtikelNr = artikelNr;
-        Menge = menge;
-        Listenpreis = listenpreis;
-        Rabatt = rabatt;
-    }
-
     public int getBestellungNr() {
         return BestellungNr;
     }
 
+    @XmlAttribute(name = "BestellungNr")
     public void setBestellungNr(int bestellungNr) {
         BestellungNr = bestellungNr;
     }
@@ -32,6 +29,7 @@ public class Bestellung_Artikel {
         return ArtikelNr;
     }
 
+    @XmlAttribute(name = "ArtikelNr")
     public void setArtikelNr(int artikelNr) {
         ArtikelNr = artikelNr;
     }
@@ -40,6 +38,7 @@ public class Bestellung_Artikel {
         return Menge;
     }
 
+    @XmlElement(name = "Listenpreis")
     public void setMenge(int menge) {
         Menge = menge;
     }
@@ -48,6 +47,7 @@ public class Bestellung_Artikel {
         return Listenpreis;
     }
 
+    @XmlElement(name = "Listenpreis")
     public void setListenpreis(BigDecimal listenpreis) {
         Listenpreis = listenpreis;
     }
@@ -56,6 +56,7 @@ public class Bestellung_Artikel {
         return Rabatt;
     }
 
+    @XmlElement(name = "Rabatt")
     public void setRabatt(BigDecimal rabatt) {
         Rabatt = rabatt;
     }

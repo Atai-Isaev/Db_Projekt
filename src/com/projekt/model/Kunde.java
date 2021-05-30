@@ -1,5 +1,10 @@
 package com.projekt.model;
 
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name = "Kunde")
 public class Kunde {
     private int KundeNr;
     private String Vorname;
@@ -13,21 +18,11 @@ public class Kunde {
     public Kunde() {
     }
 
-    public Kunde(int kundeNr, String vorname, String nachname, String telefon, String email, String straße, String ort, String PLZ) {
-        KundeNr = kundeNr;
-        Vorname = vorname;
-        Nachname = nachname;
-        Telefon = telefon;
-        Email = email;
-        Straße = straße;
-        Ort = ort;
-        this.PLZ = PLZ;
-    }
-
     public int getKundeNr() {
         return KundeNr;
     }
 
+    @XmlAttribute(name = "KundeNr")
     public void setKundeNr(int kundeNr) {
         KundeNr = kundeNr;
     }
@@ -36,6 +31,7 @@ public class Kunde {
         return Vorname;
     }
 
+    @XmlElement(name = "Vorname")
     public void setVorname(String vorname) {
         Vorname = vorname;
     }
@@ -44,6 +40,7 @@ public class Kunde {
         return Nachname;
     }
 
+    @XmlElement(name = "Nachname")
     public void setNachname(String nachname) {
         Nachname = nachname;
     }
@@ -52,6 +49,7 @@ public class Kunde {
         return Telefon;
     }
 
+    @XmlElement(name = "Telefon")
     public void setTelefon(String telefon) {
         Telefon = telefon;
     }
@@ -60,6 +58,7 @@ public class Kunde {
         return Email;
     }
 
+    @XmlElement(name = "Email")
     public void setEmail(String email) {
         Email = email;
     }
@@ -68,6 +67,7 @@ public class Kunde {
         return Straße;
     }
 
+    @XmlElement(name = "Straße")
     public void setStraße(String straße) {
         Straße = straße;
     }
@@ -76,6 +76,7 @@ public class Kunde {
         return Ort;
     }
 
+    @XmlElement(name = "Ort")
     public void setOrt(String ort) {
         Ort = ort;
     }
@@ -84,6 +85,7 @@ public class Kunde {
         return PLZ;
     }
 
+    @XmlElement(name = "PLZ")
     public void setPLZ(String PLZ) {
         this.PLZ = PLZ;
     }

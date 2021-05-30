@@ -1,5 +1,10 @@
 package com.projekt.model;
 
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name = "Geschäft")
 public class Geschäft {
     private int GeschäftNr;
     private String GeschäftName;
@@ -12,20 +17,11 @@ public class Geschäft {
     public Geschäft() {
     }
 
-    public Geschäft(int geschäftNr, String geschäftName, String telefon, String email, String straße, String ort, String PLZ) {
-        GeschäftNr = geschäftNr;
-        GeschäftName = geschäftName;
-        Telefon = telefon;
-        Email = email;
-        Straße = straße;
-        Ort = ort;
-        this.PLZ = PLZ;
-    }
-
     public int getGeschäftNr() {
         return GeschäftNr;
     }
 
+    @XmlAttribute(name = "GeschäftNr")
     public void setGeschäftNr(int geschäftNr) {
         GeschäftNr = geschäftNr;
     }
@@ -34,6 +30,7 @@ public class Geschäft {
         return GeschäftName;
     }
 
+    @XmlElement(name = "GeschäftName")
     public void setGeschäftName(String geschäftName) {
         GeschäftName = geschäftName;
     }
@@ -42,6 +39,7 @@ public class Geschäft {
         return Telefon;
     }
 
+    @XmlElement(name = "Telefon")
     public void setTelefon(String telefon) {
         Telefon = telefon;
     }
@@ -50,6 +48,7 @@ public class Geschäft {
         return Email;
     }
 
+    @XmlElement(name = "Email")
     public void setEmail(String email) {
         Email = email;
     }
@@ -58,6 +57,7 @@ public class Geschäft {
         return Straße;
     }
 
+    @XmlElement(name = "Straße")
     public void setStraße(String straße) {
         Straße = straße;
     }
@@ -66,6 +66,7 @@ public class Geschäft {
         return Ort;
     }
 
+    @XmlElement(name = "Ort")
     public void setOrt(String ort) {
         Ort = ort;
     }
@@ -74,6 +75,7 @@ public class Geschäft {
         return PLZ;
     }
 
+    @XmlElement(name = "PLZ")
     public void setPLZ(String PLZ) {
         this.PLZ = PLZ;
     }

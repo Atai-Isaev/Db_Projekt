@@ -1,7 +1,11 @@
 package com.projekt.model;
 
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Date;
 
+@XmlRootElement(name = "Bestellung")
 public class Bestellung {
     private int BestellungNr;
     private int KundeNr;
@@ -15,21 +19,11 @@ public class Bestellung {
     public Bestellung() {
     }
 
-    public Bestellung(int bestellungNr, int kundeNr, int bestellstatus, Date bestelldatum, Date bedarfsdatum, Date versanddatum, int geschäftNr, int mitarbeiterNr) {
-        BestellungNr = bestellungNr;
-        KundeNr = kundeNr;
-        Bestellstatus = bestellstatus;
-        Bestelldatum = bestelldatum;
-        Bedarfsdatum = bedarfsdatum;
-        Versanddatum = versanddatum;
-        GeschäftNr = geschäftNr;
-        MitarbeiterNr = mitarbeiterNr;
-    }
-
     public int getBestellungNr() {
         return BestellungNr;
     }
 
+    @XmlAttribute(name = "BestellungNr")
     public void setBestellungNr(int bestellungNr) {
         BestellungNr = bestellungNr;
     }
@@ -38,6 +32,7 @@ public class Bestellung {
         return KundeNr;
     }
 
+    @XmlElement(name = "KundeNr")
     public void setKundeNr(int kundeNr) {
         KundeNr = kundeNr;
     }
@@ -46,6 +41,7 @@ public class Bestellung {
         return Bestellstatus;
     }
 
+    @XmlElement(name = "Bestellstatus")
     public void setBestellstatus(int bestellstatus) {
         Bestellstatus = bestellstatus;
     }
@@ -54,6 +50,7 @@ public class Bestellung {
         return Bestelldatum;
     }
 
+    @XmlElement(name = "Bestelldatum")
     public void setBestelldatum(Date bestelldatum) {
         Bestelldatum = bestelldatum;
     }
@@ -62,6 +59,7 @@ public class Bestellung {
         return Bedarfsdatum;
     }
 
+    @XmlElement(name = "Bedarfsdatum")
     public void setBedarfsdatum(Date bedarfsdatum) {
         Bedarfsdatum = bedarfsdatum;
     }
@@ -70,6 +68,7 @@ public class Bestellung {
         return Versanddatum;
     }
 
+    @XmlElement(name = "Versanddatum")
     public void setVersanddatum(Date versanddatum) {
         Versanddatum = versanddatum;
     }
@@ -78,6 +77,7 @@ public class Bestellung {
         return GeschäftNr;
     }
 
+    @XmlElement(name = "GeschäftNr")
     public void setGeschäftNr(int geschäftNr) {
         GeschäftNr = geschäftNr;
     }
@@ -86,6 +86,7 @@ public class Bestellung {
         return MitarbeiterNr;
     }
 
+    @XmlElement(name = "MitarbeiterNr")
     public void setMitarbeiterNr(int mitarbeiterNr) {
         MitarbeiterNr = mitarbeiterNr;
     }

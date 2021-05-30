@@ -13,19 +13,8 @@ public class Artikel {
     private int KategorieNr;
     private int Modelljahr;
     private BigDecimal Listenpreis;
-    private Hersteller hersteller;
-    private Kategorie kategorie;
 
     public Artikel() {
-    }
-
-    public Artikel(int artikelNr, String artikelName, int modelljahr, BigDecimal listenpreis, Hersteller hersteller, Kategorie kategorie) {
-        ArtikelNr = artikelNr;
-        ArtikelName = artikelName;
-        Modelljahr = modelljahr;
-        Listenpreis = listenpreis;
-        this.hersteller = hersteller;
-        this.kategorie = kategorie;
     }
 
     public int getArtikelNr() {
@@ -50,6 +39,7 @@ public class Artikel {
         return HerstellerNr;
     }
 
+    @XmlElement(name = "HerstellerNr")
     public void setHerstellerNr(int herstellerNr) {
         HerstellerNr = herstellerNr;
     }
@@ -58,6 +48,7 @@ public class Artikel {
         return KategorieNr;
     }
 
+    @XmlElement(name = "KategorieNr")
     public void setKategorieNr(int kategorieNr) {
         KategorieNr = kategorieNr;
     }
@@ -78,23 +69,5 @@ public class Artikel {
     @XmlElement(name = "Listenpreis")
     public void setListenpreis(BigDecimal listenpreis) {
         Listenpreis = listenpreis;
-    }
-
-    public Hersteller getHersteller() {
-        return hersteller;
-    }
-
-    @XmlElement(name = "Hersteller")
-    public void setHersteller(Hersteller hersteller) {
-        this.hersteller = hersteller;
-    }
-
-    public Kategorie getKategorie() {
-        return kategorie;
-    }
-
-    @XmlElement(name = "Kategorie")
-    public void setKategorie(Kategorie kategorie) {
-        this.kategorie = kategorie;
     }
 }

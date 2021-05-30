@@ -1,5 +1,10 @@
 package com.projekt.model;
 
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name = "Bestände")
 public class Bestände {
     private int GeschäftNr;
     private int ArtikelNr;
@@ -8,16 +13,11 @@ public class Bestände {
     public Bestände() {
     }
 
-    public Bestände(int geschäftNr, int artikelNr, int menge) {
-        GeschäftNr = geschäftNr;
-        ArtikelNr = artikelNr;
-        Menge = menge;
-    }
-
     public int getGeschäftNr() {
         return GeschäftNr;
     }
 
+    @XmlAttribute(name = "GeschäftNr")
     public void setGeschäftNr(int geschäftNr) {
         GeschäftNr = geschäftNr;
     }
@@ -26,6 +26,7 @@ public class Bestände {
         return ArtikelNr;
     }
 
+    @XmlAttribute(name = "ArtikelNr")
     public void setArtikelNr(int artikelNr) {
         ArtikelNr = artikelNr;
     }
@@ -34,6 +35,7 @@ public class Bestände {
         return Menge;
     }
 
+    @XmlElement(name = "Menge")
     public void setMenge(int menge) {
         Menge = menge;
     }

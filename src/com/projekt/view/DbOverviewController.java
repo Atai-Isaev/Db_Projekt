@@ -10,9 +10,15 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.DirectoryChooser;
+import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.sql.SQLException;
@@ -306,6 +312,8 @@ public class DbOverviewController {
 
     }
 
+    // TODO: 30.05.2021 handleAdminAccounts for Admin
+
     @FXML
     private void handleUpdateAllData() {
         artikelObservableList.setAll(artikelDAO.getArtikels());
@@ -320,18 +328,50 @@ public class DbOverviewController {
     }
 
     @FXML
-    private void handleExportData(){
-        // TODO: 29.05.2021 XML Export Data
+    private void handleExportData() {
+        try {
+            DirectoryChooser directoryChooser = new DirectoryChooser();
+            directoryChooser.setTitle("Select a folder");
+            File selectedDirectory = directoryChooser.showDialog(exportButton.getScene().getWindow());
+
+            if(selectedDirectory != null){
+                JAXBContext context = JAXBContext.newInstance(AllDataExportXml.class);
+
+                Marshaller marshaller = context.createMarshaller();
+
+                marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+
+                AllDataExportXml allDataExportXml = new AllDataExportXml();
+
+                allDataExportXml.setArtikelList(artikelObservableList);
+                allDataExportXml.setBestellungList(bestellungObservableList);
+                allDataExportXml.setBestellung_artikelList(bestellung_artikelObservableList);
+                allDataExportXml.setBeständeList(beständeObservableList);
+                allDataExportXml.setGeschäftList(geschäftObservableList);
+                allDataExportXml.setHerstellerList(herstellerObservableList);
+                allDataExportXml.setKategorieList(kategorieObservableList);
+                allDataExportXml.setKundeList(kundeObservableList);
+                allDataExportXml.setMitarbeiterList(mitarbeiterObservableList);
+
+                marshaller.marshal(allDataExportXml, new File(selectedDirectory.getAbsolutePath() + "/" +"Db_Projekt.xml"));
+
+                marshaller.marshal(allDataExportXml, System.out);
+            }
+        } catch (JAXBException ex) {
+            ex.printStackTrace();
+        }
     }
 
     @FXML
     private void handleDeleteButton() throws SQLException {
         // TODO: 28.05.2021 Handle delete button
+        // TODO: 30.05.2021 Update each table after delete
         if (artikelTab.isSelected()) {
             Artikel selectedArtikel = artikelTableView.getSelectionModel().getSelectedItem();
             if (selectedArtikel != null) {
                 ArtikelDAO artikelDAO = new ArtikelDAO();
                 artikelDAO.deleteArtikel(selectedArtikel, main.getUsername(), main.getPassword());
+                artikelObservableList.setAll(artikelDAO.getArtikels());
             } else {
                 alertNoArtikelSelection("Artikel");
             }
@@ -340,9 +380,10 @@ public class DbOverviewController {
 
     @FXML
     private void handleNewButton() throws IOException {
-
+        // TODO: 30.05.2021 Update each Table after new
         if (artikelTab.isSelected()) {
             handleNewArtikel();
+            artikelObservableList.setAll(artikelDAO.getArtikels());
         }
         // TODO: 29.05.2021 Rest if for each tab implement
     }
@@ -398,9 +439,10 @@ public class DbOverviewController {
 
     @FXML
     private void handleEditButton() throws IOException {
-
+        // TODO: 30.05.2021 Update each Table after edit
         if (artikelTab.isSelected()) {
             handleEditArtikel();
+            artikelObservableList.setAll(artikelDAO.getArtikels());
         }
         // TODO: 28.05.2021 Rest Handle edit button impl
     }
@@ -433,8 +475,8 @@ public class DbOverviewController {
     private void alertNoArtikelSelection(String type) {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("No Selection");
-        alert.setHeaderText("No "+type+" Selected");
-        alert.setContentText("Please select a "+type+" in the table.");
+        alert.setHeaderText("No " + type + " Selected");
+        alert.setContentText("Please select a " + type + " in the table.");
         alert.showAndWait();
     }
 

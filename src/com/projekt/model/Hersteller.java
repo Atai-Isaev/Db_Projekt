@@ -1,5 +1,10 @@
 package com.projekt.model;
 
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name = "Hersteller")
 public class Hersteller {
     private int HerstellerNr;
     private String HerstellerName;
@@ -7,15 +12,11 @@ public class Hersteller {
     public Hersteller() {
     }
 
-    public Hersteller(int herstellerNr, String herstellerName) {
-        HerstellerNr = herstellerNr;
-        HerstellerName = herstellerName;
-    }
-
     public int getHerstellerNr() {
         return HerstellerNr;
     }
 
+    @XmlAttribute(name = "HerstellerNr")
     public void setHerstellerNr(int herstellerNr) {
         HerstellerNr = herstellerNr;
     }
@@ -24,6 +25,7 @@ public class Hersteller {
         return HerstellerName;
     }
 
+    @XmlElement(name = "HerstellerName")
     public void setHerstellerName(String herstellerName) {
         HerstellerName = herstellerName;
     }
