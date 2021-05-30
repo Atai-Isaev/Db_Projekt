@@ -15,6 +15,17 @@ public class Bestellung {
     public Bestellung() {
     }
 
+    public Bestellung(int bestellungNr, int kundeNr, int bestellstatus, Date bestelldatum, Date bedarfsdatum, Date versanddatum, int geschäftNr, int mitarbeiterNr) {
+        BestellungNr = bestellungNr;
+        KundeNr = kundeNr;
+        Bestellstatus = bestellstatus;
+        Bestelldatum = bestelldatum;
+        Bedarfsdatum = bedarfsdatum;
+        Versanddatum = versanddatum;
+        GeschäftNr = geschäftNr;
+        MitarbeiterNr = mitarbeiterNr;
+    }
+
     public int getBestellungNr() {
         return BestellungNr;
     }
@@ -77,5 +88,19 @@ public class Bestellung {
 
     public void setMitarbeiterNr(int mitarbeiterNr) {
         MitarbeiterNr = mitarbeiterNr;
+    }
+
+    @Override
+    public String toString() {
+        return "Bestellung{" +
+                "BestellungNr=" + BestellungNr +
+                ", KundeNr=" + KundeNr +
+                ", Bestellstatus=" + Bestellstatus +
+                ", Bestelldatum=" + Bestelldatum +
+                ", Bedarfsdatum=" + Bedarfsdatum +
+                ", Versanddatum=" + Versanddatum +
+                ", GeschäftNr=" + GeschäftNr +
+                ", MitarbeiterNr=" + MitarbeiterNr +
+                '}';
     }
 }

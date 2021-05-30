@@ -12,6 +12,16 @@ public class Geschäft {
     public Geschäft() {
     }
 
+    public Geschäft(int geschäftNr, String geschäftName, String telefon, String email, String straße, String ort, String PLZ) {
+        GeschäftNr = geschäftNr;
+        GeschäftName = geschäftName;
+        Telefon = telefon;
+        Email = email;
+        Straße = straße;
+        Ort = ort;
+        this.PLZ = PLZ;
+    }
+
     public int getGeschäftNr() {
         return GeschäftNr;
     }
@@ -66,5 +76,18 @@ public class Geschäft {
 
     public void setPLZ(String PLZ) {
         this.PLZ = PLZ;
+    }
+
+    @Override
+    public String toString() {
+        return "Geschäft{" +
+                "GeschäftNr=" + GeschäftNr +
+                ", GeschäftName='" + GeschäftName + '\'' +
+                ", Telefon='" + Telefon + '\'' +
+                ", Email='" + Email + '\'' +
+                ", Straße='" + Straße + '\'' +
+                ", Ort='" + Ort + '\'' +
+                ", PLZ='" + PLZ + '\'' +
+                '}';
     }
 }

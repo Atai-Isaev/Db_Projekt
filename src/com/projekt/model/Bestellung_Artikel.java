@@ -12,6 +12,14 @@ public class Bestellung_Artikel {
     public Bestellung_Artikel() {
     }
 
+    public Bestellung_Artikel(int bestellungNr, int artikelNr, int menge, BigDecimal listenpreis, BigDecimal rabatt) {
+        BestellungNr = bestellungNr;
+        ArtikelNr = artikelNr;
+        Menge = menge;
+        Listenpreis = listenpreis;
+        Rabatt = rabatt;
+    }
+
     public int getBestellungNr() {
         return BestellungNr;
     }
@@ -50,5 +58,16 @@ public class Bestellung_Artikel {
 
     public void setRabatt(BigDecimal rabatt) {
         Rabatt = rabatt;
+    }
+
+    @Override
+    public String toString() {
+        return "Bestellung_Artikel{" +
+                "BestellungNr=" + BestellungNr +
+                ", ArtikelNr=" + ArtikelNr +
+                ", Menge=" + Menge +
+                ", Listenpreis=" + Listenpreis +
+                ", Rabatt=" + Rabatt +
+                '}';
     }
 }

@@ -7,6 +7,11 @@ public class Hersteller {
     public Hersteller() {
     }
 
+    public Hersteller(int herstellerNr, String herstellerName) {
+        HerstellerNr = herstellerNr;
+        HerstellerName = herstellerName;
+    }
+
     public int getHerstellerNr() {
         return HerstellerNr;
     }
@@ -21,5 +26,13 @@ public class Hersteller {
 
     public void setHerstellerName(String herstellerName) {
         HerstellerName = herstellerName;
+    }
+
+    @Override
+    public String toString() {
+        return "Hersteller{" +
+                "HerstellerNr=" + HerstellerNr +
+                ", HerstellerName='" + HerstellerName + '\'' +
+                '}';
     }
 }

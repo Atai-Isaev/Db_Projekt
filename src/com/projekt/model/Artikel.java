@@ -1,7 +1,11 @@
 package com.projekt.model;
 
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.math.BigDecimal;
 
+@XmlRootElement(name = "Artikel")
 public class Artikel {
     private int ArtikelNr;
     private String ArtikelName;
@@ -9,14 +13,26 @@ public class Artikel {
     private int KategorieNr;
     private int Modelljahr;
     private BigDecimal Listenpreis;
+    private Hersteller hersteller;
+    private Kategorie kategorie;
 
     public Artikel() {
+    }
+
+    public Artikel(int artikelNr, String artikelName, int modelljahr, BigDecimal listenpreis, Hersteller hersteller, Kategorie kategorie) {
+        ArtikelNr = artikelNr;
+        ArtikelName = artikelName;
+        Modelljahr = modelljahr;
+        Listenpreis = listenpreis;
+        this.hersteller = hersteller;
+        this.kategorie = kategorie;
     }
 
     public int getArtikelNr() {
         return ArtikelNr;
     }
 
+    @XmlAttribute(name = "ArtikelNr")
     public void setArtikelNr(int artikelNr) {
         ArtikelNr = artikelNr;
     }
@@ -25,6 +41,7 @@ public class Artikel {
         return ArtikelName;
     }
 
+    @XmlElement(name = "ArtikelName")
     public void setArtikelName(String artikelName) {
         ArtikelName = artikelName;
     }
@@ -49,6 +66,7 @@ public class Artikel {
         return Modelljahr;
     }
 
+    @XmlElement(name = "Modelljahr")
     public void setModelljahr(int modelljahr) {
         Modelljahr = modelljahr;
     }
@@ -57,7 +75,26 @@ public class Artikel {
         return Listenpreis;
     }
 
+    @XmlElement(name = "Listenpreis")
     public void setListenpreis(BigDecimal listenpreis) {
         Listenpreis = listenpreis;
+    }
+
+    public Hersteller getHersteller() {
+        return hersteller;
+    }
+
+    @XmlElement(name = "Hersteller")
+    public void setHersteller(Hersteller hersteller) {
+        this.hersteller = hersteller;
+    }
+
+    public Kategorie getKategorie() {
+        return kategorie;
+    }
+
+    @XmlElement(name = "Kategorie")
+    public void setKategorie(Kategorie kategorie) {
+        this.kategorie = kategorie;
     }
 }

@@ -13,6 +13,17 @@ public class Mitarbeiter {
     public Mitarbeiter() {
     }
 
+    public Mitarbeiter(int mitarbeiterNr, String vorname, String nachname, String email, String telefon, int aktiv, int geschäftNr, int geschäftsführerNr) {
+        MitarbeiterNr = mitarbeiterNr;
+        Vorname = vorname;
+        Nachname = nachname;
+        Email = email;
+        Telefon = telefon;
+        Aktiv = aktiv;
+        GeschäftNr = geschäftNr;
+        GeschäftsführerNr = geschäftsführerNr;
+    }
+
     public int getMitarbeiterNr() {
         return MitarbeiterNr;
     }
@@ -75,5 +86,19 @@ public class Mitarbeiter {
 
     public void setGeschäftsführerNr(int geschäftsführerNr) {
         GeschäftsführerNr = geschäftsführerNr;
+    }
+
+    @Override
+    public String toString() {
+        return "Mitarbeiter{" +
+                "MitarbeiterNr=" + MitarbeiterNr +
+                ", Vorname='" + Vorname + '\'' +
+                ", Nachname='" + Nachname + '\'' +
+                ", Email='" + Email + '\'' +
+                ", Telefon='" + Telefon + '\'' +
+                ", Aktiv=" + Aktiv +
+                ", GeschäftNr=" + GeschäftNr +
+                ", GeschäftsführerNr=" + GeschäftsführerNr +
+                '}';
     }
 }

@@ -13,6 +13,17 @@ public class Kunde {
     public Kunde() {
     }
 
+    public Kunde(int kundeNr, String vorname, String nachname, String telefon, String email, String straße, String ort, String PLZ) {
+        KundeNr = kundeNr;
+        Vorname = vorname;
+        Nachname = nachname;
+        Telefon = telefon;
+        Email = email;
+        Straße = straße;
+        Ort = ort;
+        this.PLZ = PLZ;
+    }
+
     public int getKundeNr() {
         return KundeNr;
     }
@@ -75,5 +86,19 @@ public class Kunde {
 
     public void setPLZ(String PLZ) {
         this.PLZ = PLZ;
+    }
+
+    @Override
+    public String toString() {
+        return "Kunde{" +
+                "KundeNr=" + KundeNr +
+                ", Vorname='" + Vorname + '\'' +
+                ", Nachname='" + Nachname + '\'' +
+                ", Telefon='" + Telefon + '\'' +
+                ", Email='" + Email + '\'' +
+                ", Straße='" + Straße + '\'' +
+                ", Ort='" + Ort + '\'' +
+                ", PLZ='" + PLZ + '\'' +
+                '}';
     }
 }

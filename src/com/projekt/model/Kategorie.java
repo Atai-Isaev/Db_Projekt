@@ -7,6 +7,11 @@ public class Kategorie {
     public Kategorie() {
     }
 
+    public Kategorie(int kategorieNr, String kategorieName) {
+        KategorieNr = kategorieNr;
+        KategorieName = kategorieName;
+    }
+
     public int getKategorieNr() {
         return KategorieNr;
     }
@@ -21,5 +26,13 @@ public class Kategorie {
 
     public void setKategorieName(String kategorieName) {
         KategorieName = kategorieName;
+    }
+
+    @Override
+    public String toString() {
+        return "Kategorie{" +
+                "KategorieNr=" + KategorieNr +
+                ", KategorieName='" + KategorieName + '\'' +
+                '}';
     }
 }
