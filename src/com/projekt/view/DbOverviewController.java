@@ -522,6 +522,11 @@ public class DbOverviewController {
         }
     }
 
+    @FXML
+    private void handleBackButton() {
+        main.start(main.getPrimaryStage());
+    }
+
     public ObservableList<Artikel> getArtikelObservableList() {
         return artikelObservableList;
     }
