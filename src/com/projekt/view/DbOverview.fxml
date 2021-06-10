@@ -183,7 +183,6 @@
                                     <TableColumn fx:id="mitarbeiterTelefonColumn" prefWidth="129.0" text="Telefon" />
                                     <TableColumn fx:id="mitarbeiterAktivColumn" prefWidth="129.0" text="Aktiv" />
                                     <TableColumn fx:id="mitarbeiterGeschäftNrColumn" prefWidth="129.0" text="GeschäftNr" />
-                                    <TableColumn fx:id="mitarbeiterGeschäftsführerNrColumn" prefWidth="129.0" text="GeschäftsführerNr" />
                                  </columns>
                                  <columnResizePolicy>
                                     <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

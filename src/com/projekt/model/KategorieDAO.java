@@ -2,10 +2,7 @@ package com.projekt.model;
 
 import com.projekt.connectivity.DatabaseConnection;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,5 +38,14 @@ public class KategorieDAO {
             ex.printStackTrace();
         }
         return list;
+    }
+
+    public void deleteKategorie(Kategorie kategorie, String username, String password) throws SQLException {
+        String sql = "DELETE FROM Kategorie WHERE KategorieNr = "+kategorie.getKategorieNr()+"";
+        DatabaseConnection databaseConnection = new DatabaseConnection(username, password);
+        Connection con = databaseConnection.getConnection();
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.execute();
+        ps.close();
     }
 }

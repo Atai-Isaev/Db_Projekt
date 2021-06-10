@@ -189,8 +189,6 @@ public class DbOverviewController {
     private TableColumn<Mitarbeiter, Integer> mitarbeiterAktivColumn;
     @FXML
     private TableColumn<Mitarbeiter, Integer> mitarbeiterGeschäftNrColumn;
-    @FXML
-    private TableColumn<Mitarbeiter, Integer> mitarbeiterGeschäftsführerNrColumn;
 
     @FXML
     private ButtonBar buttonBar;
@@ -236,7 +234,7 @@ public class DbOverviewController {
 
     private final String[] mitarbeiterPropertyName = {"MitarbeiterNr",
             "Vorname", "Nachname", "Email", "Telefon",
-            "Aktiv", "GeschäftNr", "GeschäftsführerNr"};
+            "Aktiv", "GeschäftNr"};
 
     public DbOverviewController() {
     }
@@ -308,7 +306,6 @@ public class DbOverviewController {
         mitarbeiterTelefonColumn.setCellValueFactory(new PropertyValueFactory<>(mitarbeiterPropertyName[4]));
         mitarbeiterAktivColumn.setCellValueFactory(new PropertyValueFactory<>(mitarbeiterPropertyName[5]));
         mitarbeiterGeschäftNrColumn.setCellValueFactory(new PropertyValueFactory<>(mitarbeiterPropertyName[6]));
-        mitarbeiterGeschäftsführerNrColumn.setCellValueFactory(new PropertyValueFactory<>(mitarbeiterPropertyName[7]));
 
     }
 
@@ -372,10 +369,101 @@ public class DbOverviewController {
                 ArtikelDAO artikelDAO = new ArtikelDAO();
                 artikelDAO.deleteArtikel(selectedArtikel, main.getUsername(), main.getPassword());
                 artikelObservableList.setAll(artikelDAO.getArtikels());
+                handleUpdateAllData();
             } else {
                 alertNoArtikelSelection("Artikel");
             }
         }
+        else if (bestellungTab.isSelected()) {
+            Bestellung bestellung = bestellungTableView.getSelectionModel().getSelectedItem();
+            if (bestellung != null) {
+                BestellungDAO bestellungDAO = new BestellungDAO();
+                bestellungDAO.deleteBestellung(bestellung, main.getUsername(), main.getPassword());
+                bestellungObservableList.setAll(bestellungDAO.getBestellungs());
+                handleUpdateAllData();
+            } else {
+                alertNoArtikelSelection("Bestellung");
+            }
+        }
+        else if (bestellung_artikelTab.isSelected()) {
+            Bestellung_Artikel bestellung_artikel = bestellung_ArtikelTableView.getSelectionModel().getSelectedItem();
+            if (bestellung_artikel != null) {
+                Bestellung_ArtikelDAO bestellung_artikelDAO = new Bestellung_ArtikelDAO();
+                bestellung_artikelDAO.deleteBestellungArtikel(bestellung_artikel, main.getUsername(), main.getPassword());
+                bestellung_artikelObservableList.setAll(bestellung_artikelDAO.getBestellung_Artikels());
+                handleUpdateAllData();
+            } else {
+                alertNoArtikelSelection("Bestellung_Artikel");
+            }
+        }
+        else if (beständeTab.isSelected()) {
+            Bestände bestände = beständeTableView.getSelectionModel().getSelectedItem();
+            if (bestände != null) {
+                BeständeDAO beständeDAO = new BeständeDAO();
+                beständeDAO.deleteBestände(bestände, main.getUsername(), main.getPassword());
+                beständeObservableList.setAll(beständeDAO.getBeständes());
+                handleUpdateAllData();
+            } else {
+                alertNoArtikelSelection("Bestände");
+            }
+        }
+        else if (geschäftTab.isSelected()) {
+            Geschäft geschäft = geschäftTableView.getSelectionModel().getSelectedItem();
+            if (geschäft != null) {
+                GeschäftDAO geschäftDAO = new GeschäftDAO();
+                geschäftDAO.deleteGeschäft(geschäft, main.getUsername(), main.getPassword());
+                geschäftObservableList.setAll(geschäftDAO.getGeschäfts());
+                handleUpdateAllData();
+            } else {
+                alertNoArtikelSelection("Geschäft");
+            }
+        }
+        else if (herstellerTab.isSelected()) {
+            Hersteller hersteller = herstellerTableView.getSelectionModel().getSelectedItem();
+            if (hersteller != null) {
+                HerstellerDAO herstellerDAO = new HerstellerDAO();
+                herstellerDAO.deleteHersteller(hersteller, main.getUsername(), main.getPassword());
+                herstellerObservableList.setAll(herstellerDAO.getHerstellers());
+                handleUpdateAllData();
+            } else {
+                alertNoArtikelSelection("Hersteller");
+            }
+        }
+        else if (kategorieTab.isSelected()) {
+            Kategorie kategorie = kategorieTableView.getSelectionModel().getSelectedItem();
+            if (kategorie != null) {
+                KategorieDAO kategorieDAO = new KategorieDAO();
+                kategorieDAO.deleteKategorie(kategorie, main.getUsername(), main.getPassword());
+                kategorieObservableList.setAll(kategorieDAO.getKategories());
+                handleUpdateAllData();
+            } else {
+                alertNoArtikelSelection("Kategorie");
+            }
+        }
+        else if (kundeTab.isSelected()) {
+            Kunde kunde = kundeTableView.getSelectionModel().getSelectedItem();
+            if (kunde != null) {
+                KundeDAO kundeDAO = new KundeDAO();
+                kundeDAO.deleteKunde(kunde, main.getUsername(), main.getPassword());
+                kundeObservableList.setAll(kundeDAO.getKundes());
+                handleUpdateAllData();
+            } else {
+                alertNoArtikelSelection("Kunde");
+            }
+        }
+        else if (mitarbeiterTab.isSelected()) {
+            Mitarbeiter mitarbeiter = mitarbeiterTableView.getSelectionModel().getSelectedItem();
+            if (mitarbeiter != null) {
+                MitarbeiterDAO mitarbeiterDAO = new MitarbeiterDAO();
+                mitarbeiterDAO.deleteMitarbeiter(mitarbeiter, main.getUsername(), main.getPassword());
+                mitarbeiterObservableList.setAll(mitarbeiterDAO.getMitarbeiters());
+                handleUpdateAllData();
+            } else {
+                alertNoArtikelSelection("Mitarbeiter");
+            }
+        }
+
+
     }
 
     @FXML

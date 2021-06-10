@@ -2,10 +2,7 @@ package com.projekt.model;
 
 import com.projekt.connectivity.DatabaseConnection;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,5 +41,14 @@ public class Bestellung_ArtikelDAO {
             ex.printStackTrace();
         }
         return list;
+    }
+
+    public void deleteBestellungArtikel(Bestellung_Artikel bestellung_artikel, String username, String password) throws SQLException {
+        String sql = "DELETE FROM Bestellung_Artikel WHERE ArtikelNr = "+bestellung_artikel.getArtikelNr()+" AND BestellungNr = "+bestellung_artikel.getBestellungNr()+"";
+        DatabaseConnection databaseConnection = new DatabaseConnection(username, password);
+        Connection con = databaseConnection.getConnection();
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.execute();
+        ps.close();
     }
 }

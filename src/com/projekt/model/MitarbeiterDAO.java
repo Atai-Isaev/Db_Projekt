@@ -2,10 +2,7 @@ package com.projekt.model;
 
 import com.projekt.connectivity.DatabaseConnection;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +18,6 @@ public class MitarbeiterDAO {
             m.setTelefon(rs.getString("Telefon"));
             m.setAktiv(rs.getInt("Aktiv"));
             m.setGeschäftNr(rs.getInt("GeschäftNr"));
-            m.setGeschäftsführerNr(rs.getInt("GeschäftsführerNr"));
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
@@ -47,5 +43,14 @@ public class MitarbeiterDAO {
             ex.printStackTrace();
         }
         return list;
+    }
+
+    public void deleteMitarbeiter(Mitarbeiter mitarbeiter, String username, String password) throws SQLException {
+        String sql = "DELETE FROM Mitarbeiter WHERE MitarbeiterNr = "+mitarbeiter.getMitarbeiterNr()+"";
+        DatabaseConnection databaseConnection = new DatabaseConnection(username, password);
+        Connection con = databaseConnection.getConnection();
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.execute();
+        ps.close();
     }
 }

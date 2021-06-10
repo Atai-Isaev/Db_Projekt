@@ -2,10 +2,7 @@ package com.projekt.model;
 
 import com.projekt.connectivity.DatabaseConnection;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,5 +39,14 @@ public class BeständeDAO {
             ex.printStackTrace();
         }
         return list;
+    }
+
+    public void deleteBestände(Bestände bestände, String username, String password) throws SQLException {
+        String sql = "DELETE FROM Bestände WHERE ArtikelNr = "+bestände.getArtikelNr()+" AND GeschäftNr = "+bestände.getGeschäftNr()+"";
+        DatabaseConnection databaseConnection = new DatabaseConnection(username, password);
+        Connection con = databaseConnection.getConnection();
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.execute();
+        ps.close();
     }
 }

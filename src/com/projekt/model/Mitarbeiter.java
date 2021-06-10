@@ -13,7 +13,6 @@ public class Mitarbeiter {
     private String Telefon;
     private int Aktiv;
     private int GeschäftNr;
-    private int GeschäftsführerNr;
 
     public Mitarbeiter() {
     }
@@ -81,15 +80,6 @@ public class Mitarbeiter {
         GeschäftNr = geschäftNr;
     }
 
-    public int getGeschäftsführerNr() {
-        return GeschäftsführerNr;
-    }
-
-    @XmlElement(name = "GeschäftsführerNr")
-    public void setGeschäftsführerNr(int geschäftsführerNr) {
-        GeschäftsführerNr = geschäftsführerNr;
-    }
-
     @Override
     public String toString() {
         return "Mitarbeiter{" +
@@ -100,7 +90,6 @@ public class Mitarbeiter {
                 ", Telefon='" + Telefon + '\'' +
                 ", Aktiv=" + Aktiv +
                 ", GeschäftNr=" + GeschäftNr +
-                ", GeschäftsführerNr=" + GeschäftsführerNr +
                 '}';
     }
 }
