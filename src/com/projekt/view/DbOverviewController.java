@@ -11,7 +11,6 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.DirectoryChooser;
-import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -361,8 +360,6 @@ public class DbOverviewController {
 
     @FXML
     private void handleDeleteButton() throws SQLException {
-        // TODO: 28.05.2021 Handle delete button
-        // TODO: 30.05.2021 Update each table after delete
         if (artikelTab.isSelected()) {
             Artikel selectedArtikel = artikelTableView.getSelectionModel().getSelectedItem();
             if (selectedArtikel != null) {
@@ -371,7 +368,7 @@ public class DbOverviewController {
                 artikelObservableList.setAll(artikelDAO.getArtikels());
                 handleUpdateAllData();
             } else {
-                alertNoArtikelSelection("Artikel");
+                alertNoSelection("Artikel");
             }
         }
         else if (bestellungTab.isSelected()) {
@@ -382,7 +379,7 @@ public class DbOverviewController {
                 bestellungObservableList.setAll(bestellungDAO.getBestellungs());
                 handleUpdateAllData();
             } else {
-                alertNoArtikelSelection("Bestellung");
+                alertNoSelection("Bestellung");
             }
         }
         else if (bestellung_artikelTab.isSelected()) {
@@ -393,7 +390,7 @@ public class DbOverviewController {
                 bestellung_artikelObservableList.setAll(bestellung_artikelDAO.getBestellung_Artikels());
                 handleUpdateAllData();
             } else {
-                alertNoArtikelSelection("Bestellung_Artikel");
+                alertNoSelection("Bestellung_Artikel");
             }
         }
         else if (beständeTab.isSelected()) {
@@ -404,7 +401,7 @@ public class DbOverviewController {
                 beständeObservableList.setAll(beständeDAO.getBeständes());
                 handleUpdateAllData();
             } else {
-                alertNoArtikelSelection("Bestände");
+                alertNoSelection("Bestände");
             }
         }
         else if (geschäftTab.isSelected()) {
@@ -415,7 +412,7 @@ public class DbOverviewController {
                 geschäftObservableList.setAll(geschäftDAO.getGeschäfts());
                 handleUpdateAllData();
             } else {
-                alertNoArtikelSelection("Geschäft");
+                alertNoSelection("Geschäft");
             }
         }
         else if (herstellerTab.isSelected()) {
@@ -426,7 +423,7 @@ public class DbOverviewController {
                 herstellerObservableList.setAll(herstellerDAO.getHerstellers());
                 handleUpdateAllData();
             } else {
-                alertNoArtikelSelection("Hersteller");
+                alertNoSelection("Hersteller");
             }
         }
         else if (kategorieTab.isSelected()) {
@@ -437,7 +434,7 @@ public class DbOverviewController {
                 kategorieObservableList.setAll(kategorieDAO.getKategories());
                 handleUpdateAllData();
             } else {
-                alertNoArtikelSelection("Kategorie");
+                alertNoSelection("Kategorie");
             }
         }
         else if (kundeTab.isSelected()) {
@@ -448,7 +445,7 @@ public class DbOverviewController {
                 kundeObservableList.setAll(kundeDAO.getKundes());
                 handleUpdateAllData();
             } else {
-                alertNoArtikelSelection("Kunde");
+                alertNoSelection("Kunde");
             }
         }
         else if (mitarbeiterTab.isSelected()) {
@@ -459,11 +456,9 @@ public class DbOverviewController {
                 mitarbeiterObservableList.setAll(mitarbeiterDAO.getMitarbeiters());
                 handleUpdateAllData();
             } else {
-                alertNoArtikelSelection("Mitarbeiter");
+                alertNoSelection("Mitarbeiter");
             }
         }
-
-
     }
 
     @FXML
@@ -472,6 +467,10 @@ public class DbOverviewController {
         if (artikelTab.isSelected()) {
             handleNewArtikel();
             artikelObservableList.setAll(artikelDAO.getArtikels());
+        }
+        else if (beständeTab.isSelected()) {
+            handleNewBestände();
+            beständeObservableList.setAll(beständeDAO.getBeständes());
         }
         // TODO: 29.05.2021 Rest if for each tab implement
     }
@@ -501,8 +500,21 @@ public class DbOverviewController {
         // TODO: 29.05.2021 new BA
     }
 
-    public void handleNewBestände() {
-        // TODO: 29.05.2021 new Bestaende
+    public void handleNewBestände() throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Main.class.getResource("view/BestaendeCreateDialog.fxml"));
+        AnchorPane page = loader.load();
+
+        Stage dialogStage = new Stage();
+        dialogStage.setTitle("Bestände erstellen");
+        dialogStage.initModality(Modality.WINDOW_MODAL);
+        dialogStage.setScene(new Scene(page));
+
+        BestaendeCreateDialogController controller = loader.getController();
+        controller.setDbOverviewControllerNew(this);
+        controller.setMain(this.main);
+        controller.setStage(dialogStage);
+        dialogStage.showAndWait();
     }
 
     public void handleNewGeschäft() {
@@ -532,6 +544,10 @@ public class DbOverviewController {
             handleEditArtikel();
             artikelObservableList.setAll(artikelDAO.getArtikels());
         }
+        else if (beständeTab.isSelected()) {
+            handleEditBestände();
+            beständeObservableList.setAll(beständeDAO.getBeständes());
+        }
         // TODO: 28.05.2021 Rest Handle edit button impl
     }
 
@@ -556,11 +572,11 @@ public class DbOverviewController {
             controller.setStage(dialogStage);
             dialogStage.showAndWait();
         } else {
-            alertNoArtikelSelection("Artikel");
+            alertNoSelection("Artikel");
         }
     }
 
-    private void alertNoArtikelSelection(String type) {
+    private void alertNoSelection(String type) {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("No Selection");
         alert.setHeaderText("No " + type + " Selected");
@@ -576,8 +592,29 @@ public class DbOverviewController {
         // TODO: 29.05.2021 edit BA
     }
 
-    public void handleEditBestände() {
-        // TODO: 29.05.2021 edit Bestaende
+    public void handleEditBestände() throws IOException {
+        Bestände selectedBestände = beständeTableView.getSelectionModel().getSelectedItem();
+
+        if (selectedBestände != null) {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("view/BestaendeCreateDialog.fxml"));
+            AnchorPane page = loader.load();
+
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Bestände editieren");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.setScene(new Scene(page));
+
+            BestaendeCreateDialogController controller = loader.getController();
+            controller.setDbOverviewControllerEdit(this, selectedBestände.getGeschäftNr(), selectedBestände.getArtikelNr());
+            controller.setMain(this.main);
+            controller.setTempArtikel(selectedBestände);
+
+            controller.setStage(dialogStage);
+            dialogStage.showAndWait();
+        } else {
+            alertNoSelection("Bestände");
+        }
     }
 
     public void handleEditGeschäft() {

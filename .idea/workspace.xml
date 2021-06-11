@@ -6,20 +6,25 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bab8ba74-cac0-46df-8e9d-6764e47c70b4" name="Default Changelist" comment="added handleBackButton">
-      <change afterPath="$PROJECT_DIR$/additional_files/Db_Projekt_v1.rar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/additional_files/sql_Db_Projekt.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/projekt/model/BestellungDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/projekt/model/BestellungDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/projekt/model/Bestellung_ArtikelDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/projekt/model/Bestellung_ArtikelDAO.java" afterDir="false" />
+    <list default="true" id="bab8ba74-cac0-46df-8e9d-6764e47c70b4" name="Default Changelist" comment="-delete selected row from all tables&#10;-artifacts&#10;-sql query for create db">
+      <change afterPath="$PROJECT_DIR$/src/com/projekt/view/BestaendeCreateDialog.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/projekt/view/BestaendeCreateDialogController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/projekt/view/BestellungCreateDialog.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/projekt/view/BestellungCreateDialogController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/projekt/view/Bestellung_ArtikelCreateDialog.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/projekt/view/Bestellung_ArtikelCreateDialogController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/projekt/view/GeschaeftCreateDialog.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/projekt/view/GeschaeftCreateDialogController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/projekt/view/HerstellerCreateDialog.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/projekt/view/HerstellerCreateDialogController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/projekt/view/KategorieCreateDialog.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/projekt/view/KategorieCreateDialogController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/projekt/view/KundeCreateDialog.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/projekt/view/KundeCreateDialogController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/projekt/view/MitarbeiterCreateDialog.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/projekt/view/MitarbeiterCreateDialogController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/projekt/model/BeständeDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/projekt/model/BeständeDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/projekt/model/GeschäftDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/projekt/model/GeschäftDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/projekt/model/HerstellerDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/projekt/model/HerstellerDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/projekt/model/KategorieDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/projekt/model/KategorieDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/projekt/model/KundeDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/projekt/model/KundeDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/projekt/model/Mitarbeiter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/projekt/model/Mitarbeiter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/projekt/model/MitarbeiterDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/projekt/model/MitarbeiterDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/projekt/view/DbOverview.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/projekt/view/DbOverview.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/projekt/view/DbOverviewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/projekt/view/DbOverviewController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -27,10 +32,28 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
   <component name="ProjectId" id="1ti3OQzpglTuKhhNcS9VVjLSYAh" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -40,13 +63,15 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/mssql-jdbc-9.2.1.jre11.jar" />
+    <property name="last_opened_file_path" value="$USER_HOME$/AppData/Local/SceneBuilder/SceneBuilder.exe" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\ataib\IdeaProjects\Db_Projekt\src\com\projekt\view" />
       <recent name="C:\Users\ataib\IdeaProjects\Db_Projekt\src\sql" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -94,7 +119,9 @@
       <option name="presentableId" value="Default" />
       <updated>1623238050896</updated>
       <workItem from="1623238054031" duration="23000" />
-      <workItem from="1623345862633" duration="10149000" />
+      <workItem from="1623345862633" duration="10284000" />
+      <workItem from="1623440677150" duration="2497000" />
+      <workItem from="1623443565027" duration="4144000" />
     </task>
     <task id="LOCAL-00001" summary="added handleBackButton">
       <created>1623348034091</created>
@@ -103,7 +130,14 @@
       <option name="project" value="LOCAL" />
       <updated>1623348034091</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="-delete selected row from all tables&#10;-artifacts&#10;-sql query for create db">
+      <created>1623356809688</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1623356809688</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -119,9 +153,11 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="added handleBackButton" />
-    <option name="LAST_COMMIT_MESSAGE" value="added handleBackButton" />
+    <MESSAGE value="-delete selected row from all tables&#10;-artifacts&#10;-sql query for create db" />
+    <option name="LAST_COMMIT_MESSAGE" value="-delete selected row from all tables&#10;-artifacts&#10;-sql query for create db" />
   </component>
 </project>

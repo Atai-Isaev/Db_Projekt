@@ -49,4 +49,32 @@ public class BeständeDAO {
         ps.execute();
         ps.close();
     }
+
+    public void insertBestände(Bestände b, String username, String password) throws SQLException {
+        String sql = "INSERT INTO Bestände VALUES (?,?,?)";
+
+        connectionToBeständeTable(b, username, password, sql);
+    }
+
+    public void updateBestände(Bestände b, String username, String password) throws SQLException {
+        String sql = "UPDATE Bestände SET Menge = ? WHERE GeschäftNr = "+b.getGeschäftNr()+" AND ArtikelNr = "+b.getArtikelNr();
+
+        DatabaseConnection databaseConnection = new DatabaseConnection(username, password);
+        Connection con = databaseConnection.getConnection();
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setInt(1, b.getMenge());
+        ps.execute();
+        ps.close();
+    }
+
+    private void connectionToBeständeTable(Bestände b, String username, String password, String sql) throws SQLException {
+        DatabaseConnection databaseConnection = new DatabaseConnection(username, password);
+        Connection con = databaseConnection.getConnection();
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setInt(1, b.getGeschäftNr());
+        ps.setInt(2, b.getArtikelNr());
+        ps.setInt(3, b.getMenge());
+        ps.execute();
+        ps.close();
+    }
 }
