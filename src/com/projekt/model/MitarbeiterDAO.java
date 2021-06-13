@@ -53,4 +53,36 @@ public class MitarbeiterDAO {
         ps.execute();
         ps.close();
     }
+
+    public void insertMitarbeiter(Mitarbeiter a, String username, String password) throws SQLException {
+        String sql = "INSERT INTO Mitarbeiter VALUES (?,?,?,?,?,?)";
+
+        connectionToMitarbeiterTable(a, username, password, sql);
+    }
+
+    public void updateMitarbeiter(Mitarbeiter a, String username, String password) throws SQLException {
+        String sql = "UPDATE Mitarbeiter SET Vorname = ?," +
+                "Nachname = ?," +
+                "Email = ?," +
+                "Telefon = ?," +
+                "Aktiv = ?, " +
+                "GeschäftNr = ? " +
+                "WHERE MitarbeiterNr = "+a.getMitarbeiterNr()+"";
+
+        connectionToMitarbeiterTable(a, username, password, sql);
+    }
+
+    private void connectionToMitarbeiterTable(Mitarbeiter a, String username, String password, String sql) throws SQLException {
+        DatabaseConnection databaseConnection = new DatabaseConnection(username, password);
+        Connection con = databaseConnection.getConnection();
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setString(1, a.getVorname());
+        ps.setString(2, a.getNachname());
+        ps.setString(3, a.getEmail());
+        ps.setString(4, a.getTelefon());
+        ps.setInt(5, a.getAktiv());
+        ps.setInt(6, a.getGeschäftNr());
+        ps.execute();
+        ps.close();
+    }
 }

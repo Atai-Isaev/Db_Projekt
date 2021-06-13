@@ -515,7 +515,10 @@ public class DbOverviewController {
             handleNewKunde();
             kundeObservableList.setAll(kundeDAO.getKundes());
         }
-        // TODO: 29.05.2021 Rest if for each tab implement
+        else if (mitarbeiterTab.isSelected()) {
+            handleNewMitarbeiter();
+            mitarbeiterObservableList.setAll(mitarbeiterDAO.getMitarbeiters());
+        }
     }
 
     private void handleNewArtikel() throws IOException {
@@ -524,7 +527,7 @@ public class DbOverviewController {
         AnchorPane page = loader.load();
 
         Stage dialogStage = new Stage();
-        dialogStage.setTitle("Artikel erstellen");
+        dialogStage.setTitle("Artikel create");
         dialogStage.initModality(Modality.WINDOW_MODAL);
         dialogStage.setScene(new Scene(page));
 
@@ -541,7 +544,7 @@ public class DbOverviewController {
         AnchorPane page = loader.load();
 
         Stage dialogStage = new Stage();
-        dialogStage.setTitle("Bestellung erstellen");
+        dialogStage.setTitle("Bestellung create");
         dialogStage.initModality(Modality.WINDOW_MODAL);
         dialogStage.setScene(new Scene(page));
 
@@ -558,7 +561,7 @@ public class DbOverviewController {
         AnchorPane page = loader.load();
 
         Stage dialogStage = new Stage();
-        dialogStage.setTitle("Bestellung_Artikel erstellen");
+        dialogStage.setTitle("Bestellung_Artikel create");
         dialogStage.initModality(Modality.WINDOW_MODAL);
         dialogStage.setScene(new Scene(page));
 
@@ -575,7 +578,7 @@ public class DbOverviewController {
         AnchorPane page = loader.load();
 
         Stage dialogStage = new Stage();
-        dialogStage.setTitle("Bestände erstellen");
+        dialogStage.setTitle("Bestände create");
         dialogStage.initModality(Modality.WINDOW_MODAL);
         dialogStage.setScene(new Scene(page));
 
@@ -592,7 +595,7 @@ public class DbOverviewController {
         AnchorPane page = loader.load();
 
         Stage dialogStage = new Stage();
-        dialogStage.setTitle("Geschäft erstellen");
+        dialogStage.setTitle("Geschäft create");
         dialogStage.initModality(Modality.WINDOW_MODAL);
         dialogStage.setScene(new Scene(page));
 
@@ -609,7 +612,7 @@ public class DbOverviewController {
         AnchorPane page = loader.load();
 
         Stage dialogStage = new Stage();
-        dialogStage.setTitle("Hersteller erstellen");
+        dialogStage.setTitle("Hersteller create");
         dialogStage.initModality(Modality.WINDOW_MODAL);
         dialogStage.setScene(new Scene(page));
 
@@ -626,7 +629,7 @@ public class DbOverviewController {
         AnchorPane page = loader.load();
 
         Stage dialogStage = new Stage();
-        dialogStage.setTitle("Kategorie erstellen");
+        dialogStage.setTitle("Kategorie create");
         dialogStage.initModality(Modality.WINDOW_MODAL);
         dialogStage.setScene(new Scene(page));
 
@@ -643,7 +646,7 @@ public class DbOverviewController {
         AnchorPane page = loader.load();
 
         Stage dialogStage = new Stage();
-        dialogStage.setTitle("Kunde erstellen");
+        dialogStage.setTitle("Kunde create");
         dialogStage.initModality(Modality.WINDOW_MODAL);
         dialogStage.setScene(new Scene(page));
 
@@ -654,8 +657,21 @@ public class DbOverviewController {
         dialogStage.showAndWait();
     }
 
-    public void handleNewMitarbeiter() {
-        // TODO: 29.05.2021 new Mitarbeiter
+    public void handleNewMitarbeiter() throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Main.class.getResource("view/MitarbeiterCreateDialog.fxml"));
+        AnchorPane page = loader.load();
+
+        Stage dialogStage = new Stage();
+        dialogStage.setTitle("Mitarbeiter create");
+        dialogStage.initModality(Modality.WINDOW_MODAL);
+        dialogStage.setScene(new Scene(page));
+
+        MitarbeiterCreateDialogController controller = loader.getController();
+        controller.setDbOverviewController(this);
+        controller.setMain(this.main);
+        controller.setStage(dialogStage);
+        dialogStage.showAndWait();
     }
 
     @FXML
@@ -692,7 +708,10 @@ public class DbOverviewController {
             handleEditKunde();
             kundeObservableList.setAll(kundeDAO.getKundes());
         }
-        // TODO: 28.05.2021 Rest Handle edit button impl
+        else if (mitarbeiterTab.isSelected()) {
+            handleEditMitarbeiter();
+            mitarbeiterObservableList.setAll(mitarbeiterDAO.getMitarbeiters());
+        }
     }
 
     private void handleEditArtikel() throws IOException {
@@ -907,8 +926,29 @@ public class DbOverviewController {
         }
     }
 
-    public void handleEditMitarbeiter() {
-        // TODO: 29.05.2021 edit Mitarbeiter
+    public void handleEditMitarbeiter() throws IOException {
+        Mitarbeiter selectedItem = mitarbeiterTableView.getSelectionModel().getSelectedItem();
+
+        if (selectedItem != null) {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("view/MitarbeiterCreateDialog.fxml"));
+            AnchorPane page = loader.load();
+
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Mitarbeiter editieren");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.setScene(new Scene(page));
+
+            MitarbeiterCreateDialogController controller = loader.getController();
+            controller.setDbOverviewController(this);
+            controller.setMain(this.main);
+            controller.setTempMitarbeiter(selectedItem);
+
+            controller.setStage(dialogStage);
+            dialogStage.showAndWait();
+        } else {
+            alertNoSelection("Mitarbeiter");
+        }
     }
 
     public void setMain(Main main) {
