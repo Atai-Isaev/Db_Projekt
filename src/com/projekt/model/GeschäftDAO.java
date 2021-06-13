@@ -53,4 +53,36 @@ public class GeschäftDAO {
         ps.execute();
         ps.close();
     }
+
+    public void insertGeschäft(Geschäft a, String username, String password) throws SQLException {
+        String sql = "INSERT INTO Geschäft VALUES (?,?,?,?,?,?)";
+
+        connectionToGeschäftTable(a, username, password, sql);
+    }
+
+    public void updateGeschäft(Geschäft a, String username, String password) throws SQLException {
+        String sql = "UPDATE Geschäft SET GeschäftName = ?," +
+                "Telefon = ?," +
+                "Email = ?," +
+                "Straße = ?," +
+                "Ort = ?, " +
+                "PLZ = ? " +
+                "WHERE GeschäftNr = "+a.getGeschäftNr()+"";
+
+        connectionToGeschäftTable(a, username, password, sql);
+    }
+
+    private void connectionToGeschäftTable(Geschäft a, String username, String password, String sql) throws SQLException {
+        DatabaseConnection databaseConnection = new DatabaseConnection(username, password);
+        Connection con = databaseConnection.getConnection();
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setString(1, a.getGeschäftName());
+        ps.setString(2, a.getTelefon());
+        ps.setString(3, a.getEmail());
+        ps.setString(4, a.getStraße());
+        ps.setString(5, a.getOrt());
+        ps.setInt(6, Integer.parseInt(a.getPLZ()));
+        ps.execute();
+        ps.close();
+    }
 }

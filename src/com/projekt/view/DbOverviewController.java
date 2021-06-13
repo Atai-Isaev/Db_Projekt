@@ -499,6 +499,10 @@ public class DbOverviewController {
             handleNewBestellungArtikel();
             bestellung_artikelObservableList.setAll(bestellung_artikelDAO.getBestellung_Artikels());
         }
+        else if (geschäftTab.isSelected()) {
+            handleNewGeschäft();
+            geschäftObservableList.setAll(geschäftDAO.getGeschäfts());
+        }
         // TODO: 29.05.2021 Rest if for each tab implement
     }
 
@@ -570,8 +574,21 @@ public class DbOverviewController {
         dialogStage.showAndWait();
     }
 
-    public void handleNewGeschäft() {
-        // TODO: 29.05.2021 new Geshaeft
+    public void handleNewGeschäft() throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Main.class.getResource("view/GeschaeftCreateDialog.fxml"));
+        AnchorPane page = loader.load();
+
+        Stage dialogStage = new Stage();
+        dialogStage.setTitle("Geschäft erstellen");
+        dialogStage.initModality(Modality.WINDOW_MODAL);
+        dialogStage.setScene(new Scene(page));
+
+        GeschaeftCreateDialogController controller = loader.getController();
+        controller.setDbOverviewController(this);
+        controller.setMain(this.main);
+        controller.setStage(dialogStage);
+        dialogStage.showAndWait();
     }
 
     public void handleNewHersteller() {
@@ -608,6 +625,10 @@ public class DbOverviewController {
         else if (bestellung_artikelTab.isSelected()) {
             handleEditBestellungArtikel();
             bestellung_artikelObservableList.setAll(bestellung_artikelDAO.getBestellung_Artikels());
+        }
+        else if (geschäftTab.isSelected()) {
+            handleEditGeschäft();
+            geschäftObservableList.setAll(geschäftDAO.getGeschäfts());
         }
         // TODO: 28.05.2021 Rest Handle edit button impl
     }
@@ -724,8 +745,29 @@ public class DbOverviewController {
         }
     }
 
-    public void handleEditGeschäft() {
-        // TODO: 29.05.2021 edit Geshaeft
+    public void handleEditGeschäft() throws IOException {
+        Geschäft selectedItem = geschäftTableView.getSelectionModel().getSelectedItem();
+
+        if (selectedItem != null) {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("view/GeschaeftCreateDialog.fxml"));
+            AnchorPane page = loader.load();
+
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Geschäft editieren");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.setScene(new Scene(page));
+
+            GeschaeftCreateDialogController controller = loader.getController();
+            controller.setDbOverviewController(this);
+            controller.setMain(this.main);
+            controller.setTempGeschäft(selectedItem);
+
+            controller.setStage(dialogStage);
+            dialogStage.showAndWait();
+        } else {
+            alertNoSelection("Geschäft");
+        }
     }
 
     public void handleEditHersteller() {

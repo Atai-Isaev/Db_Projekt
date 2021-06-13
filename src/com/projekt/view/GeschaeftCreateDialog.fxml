@@ -20,25 +20,28 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
             <Label text="GeschäftNr" />
-            <Label GridPane.columnIndex="1" />
+            <Label fx:id="geschäftNrLabel" GridPane.columnIndex="1" />
             <Label text="GeschäftName" GridPane.rowIndex="1" />
             <Label text="Telefon" GridPane.rowIndex="2" />
             <Label text="Email" GridPane.rowIndex="3" />
-            <Label text="Ort" GridPane.rowIndex="4" />
-            <Label text="PLZ" GridPane.rowIndex="5" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label text="Ort" GridPane.rowIndex="5" />
+            <Label text="PLZ" GridPane.rowIndex="6" />
+            <TextField fx:id="geschäftNameField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="ortField" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <TextField fx:id="PLZField" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <TextField fx:id="telefonField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="emailField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label text="Straße" GridPane.rowIndex="4" />
+            <TextField fx:id="straßeField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
          </children>
       </GridPane>
-      <Button layoutX="286.0" layoutY="561.0" mnemonicParsing="false" text="OK" />
-      <Button layoutX="334.0" layoutY="561.0" mnemonicParsing="false" text="Cancel" />
+      <Button layoutX="286.0" layoutY="561.0" mnemonicParsing="false" onAction="#handleOk" text="OK" />
+      <Button layoutX="334.0" layoutY="561.0" mnemonicParsing="false" onAction="#handleCancel" text="Cancel" />
    </children>
 </AnchorPane>
