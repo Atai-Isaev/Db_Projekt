@@ -503,6 +503,10 @@ public class DbOverviewController {
             handleNewGeschäft();
             geschäftObservableList.setAll(geschäftDAO.getGeschäfts());
         }
+        else if (herstellerTab.isSelected()) {
+            handleNewHersteller();
+            herstellerObservableList.setAll(herstellerDAO.getHerstellers());
+        }
         // TODO: 29.05.2021 Rest if for each tab implement
     }
 
@@ -591,8 +595,21 @@ public class DbOverviewController {
         dialogStage.showAndWait();
     }
 
-    public void handleNewHersteller() {
-        // TODO: 29.05.2021 new Hersteller
+    public void handleNewHersteller() throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Main.class.getResource("view/HerstellerCreateDialog.fxml"));
+        AnchorPane page = loader.load();
+
+        Stage dialogStage = new Stage();
+        dialogStage.setTitle("Hersteller erstellen");
+        dialogStage.initModality(Modality.WINDOW_MODAL);
+        dialogStage.setScene(new Scene(page));
+
+        HerstellerCreateDialogController controller = loader.getController();
+        controller.setDbOverviewController(this);
+        controller.setMain(this.main);
+        controller.setStage(dialogStage);
+        dialogStage.showAndWait();
     }
 
     public void handleNewKategorie() {
@@ -629,6 +646,10 @@ public class DbOverviewController {
         else if (geschäftTab.isSelected()) {
             handleEditGeschäft();
             geschäftObservableList.setAll(geschäftDAO.getGeschäfts());
+        }
+        else if (herstellerTab.isSelected()) {
+            handleEditHersteller();
+            herstellerObservableList.setAll(herstellerDAO.getHerstellers());
         }
         // TODO: 28.05.2021 Rest Handle edit button impl
     }
@@ -770,8 +791,29 @@ public class DbOverviewController {
         }
     }
 
-    public void handleEditHersteller() {
-        // TODO: 29.05.2021 edit Hersteller
+    public void handleEditHersteller() throws IOException {
+        Hersteller selectedItem = herstellerTableView.getSelectionModel().getSelectedItem();
+
+        if (selectedItem != null) {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("view/HerstellerCreateDialog.fxml"));
+            AnchorPane page = loader.load();
+
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Hersteller editieren");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.setScene(new Scene(page));
+
+            HerstellerCreateDialogController controller = loader.getController();
+            controller.setDbOverviewController(this);
+            controller.setMain(this.main);
+            controller.setTempHersteller(selectedItem);
+
+            controller.setStage(dialogStage);
+            dialogStage.showAndWait();
+        } else {
+            alertNoSelection("Hersteller");
+        }
     }
 
     public void handleEditKategorie() {

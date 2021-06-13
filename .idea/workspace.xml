@@ -6,12 +6,11 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bab8ba74-cac0-46df-8e9d-6764e47c70b4" name="Default Changelist" comment="Bestellung_Artikel insert and update added">
+    <list default="true" id="bab8ba74-cac0-46df-8e9d-6764e47c70b4" name="Default Changelist" comment="Geschäft insert and update added">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/projekt/model/GeschäftDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/projekt/model/GeschäftDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/projekt/model/HerstellerDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/projekt/model/HerstellerDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/projekt/view/DbOverviewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/projekt/view/DbOverviewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/projekt/view/GeschaeftCreateDialog.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/projekt/view/GeschaeftCreateDialog.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/projekt/view/GeschaeftCreateDialogController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/projekt/view/GeschaeftCreateDialogController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/projekt/view/HerstellerCreateDialogController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/projekt/view/HerstellerCreateDialogController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,7 +112,7 @@
       <workItem from="1623443565027" duration="4314000" />
       <workItem from="1623537976407" duration="972000" />
       <workItem from="1623582185299" duration="8376000" />
-      <workItem from="1623590867534" duration="15056000" />
+      <workItem from="1623590867534" duration="16227000" />
     </task>
     <task id="LOCAL-00001" summary="added handleBackButton">
       <created>1623348034091</created>
@@ -157,7 +156,14 @@
       <option name="project" value="LOCAL" />
       <updated>1623602698502</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Geschäft insert and update added">
+      <created>1623606601923</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1623606601923</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -182,7 +188,8 @@
     <MESSAGE value="Bestellung insert and update added" />
     <MESSAGE value="Admin functions started but need fix(1 bug with execute query for acc2)" />
     <MESSAGE value="Bestellung_Artikel insert and update added" />
-    <option name="LAST_COMMIT_MESSAGE" value="Bestellung_Artikel insert and update added" />
+    <MESSAGE value="Geschäft insert and update added" />
+    <option name="LAST_COMMIT_MESSAGE" value="Geschäft insert and update added" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

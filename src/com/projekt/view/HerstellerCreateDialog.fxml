@@ -21,12 +21,12 @@
         </rowConstraints>
          <children>
             <Label text="HerstellerNr" />
-            <Label GridPane.columnIndex="1" />
+            <Label fx:id="herstellerNrLabel" GridPane.columnIndex="1" />
             <Label text="HerstellerName" GridPane.rowIndex="1" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="herstellerNameField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
-      <Button layoutX="286.0" layoutY="561.0" mnemonicParsing="false" text="OK" />
-      <Button layoutX="334.0" layoutY="561.0" mnemonicParsing="false" text="Cancel" />
+      <Button layoutX="286.0" layoutY="561.0" mnemonicParsing="false" onAction="#handleOk" text="OK" />
+      <Button layoutX="334.0" layoutY="561.0" mnemonicParsing="false" onAction="#handleCancel" text="Cancel" />
    </children>
 </AnchorPane>
