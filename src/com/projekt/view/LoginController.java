@@ -54,6 +54,19 @@ public class LoginController {
         Connection connectDB = databaseConnection.getConnection();
         String verifyLogin = "SELECT count(1) FROM Account WHERE username = '" + usernameTextField.getText() + "' AND password = '" + enterPasswordField.getText() + "'";
 
+//        String verifyLogin2 = "select sp.name as login,\n" +
+//                "       sp.type_desc as login_type,\n" +
+//                "       sl.password_hash,\n" +
+//                "       sp.create_date,\n" +
+//                "       sp.modify_date,\n" +
+//                "       case when sp.is_disabled = 1 then 'Disabled'\n" +
+//                "            else 'Enabled' end as status\n" +
+//                "from sys.server_principals sp\n" +
+//                "left join sys.sql_logins sl\n" +
+//                "          on sp.principal_id = sl.principal_id\n" +
+//                "where sp.type not in ('G', 'R') and sp.name = "+usernameTextField.getText()+" and sp.is_disabled = 0\n" +
+//                "order by sp.name;";
+
         try {
             Statement statement = connectDB.createStatement();
             ResultSet resultSet = statement.executeQuery(verifyLogin);

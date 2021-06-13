@@ -311,7 +311,23 @@ public class DbOverviewController {
 
     }
 
-    // TODO: 30.05.2021 handleAdminAccounts for Admin
+    @FXML
+    private void handleManageUsers() throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Main.class.getResource("view/UserManageDialog.fxml"));
+        AnchorPane page = loader.load();
+
+        Stage dialogStage = new Stage();
+        dialogStage.setTitle("Manage users");
+        dialogStage.initModality(Modality.WINDOW_MODAL);
+        dialogStage.setScene(new Scene(page));
+
+        UserManageDialogController controller = loader.getController();
+        controller.setDbOverviewController(this);
+        controller.setMain(this.main);
+        controller.setStage(dialogStage);
+        dialogStage.showAndWait();
+    }
 
     @FXML
     private void handleUpdateAllData() {
