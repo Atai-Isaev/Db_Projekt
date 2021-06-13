@@ -6,25 +6,13 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bab8ba74-cac0-46df-8e9d-6764e47c70b4" name="Default Changelist" comment="-delete selected row from all tables&#10;-artifacts&#10;-sql query for create db">
-      <change afterPath="$PROJECT_DIR$/src/com/projekt/view/BestaendeCreateDialog.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/projekt/view/BestaendeCreateDialogController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/projekt/view/BestellungCreateDialog.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/projekt/view/BestellungCreateDialogController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/projekt/view/Bestellung_ArtikelCreateDialog.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/projekt/view/Bestellung_ArtikelCreateDialogController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/projekt/view/GeschaeftCreateDialog.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/projekt/view/GeschaeftCreateDialogController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/projekt/view/HerstellerCreateDialog.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/projekt/view/HerstellerCreateDialogController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/projekt/view/KategorieCreateDialog.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/projekt/view/KategorieCreateDialogController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/projekt/view/KundeCreateDialog.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/projekt/view/KundeCreateDialogController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/projekt/view/MitarbeiterCreateDialog.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/projekt/view/MitarbeiterCreateDialogController.java" afterDir="false" />
+    <list default="true" id="bab8ba74-cac0-46df-8e9d-6764e47c70b4" name="Default Changelist" comment="Bestände insert and update added&#10;&#10;added template fxml and controller for all tables">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/projekt/model/BeständeDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/projekt/model/BeständeDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/projekt/model/BestellungDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/projekt/model/BestellungDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/projekt/view/BestaendeCreateDialogController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/projekt/view/BestaendeCreateDialogController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/projekt/view/BestellungCreateDialog.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/projekt/view/BestellungCreateDialog.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/projekt/view/BestellungCreateDialogController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/projekt/view/BestellungCreateDialogController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/projekt/view/DbOverview.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/projekt/view/DbOverview.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/projekt/view/DbOverviewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/projekt/view/DbOverviewController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -63,6 +51,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="extract.method.default.visibility" value="private" />
     <property name="last_opened_file_path" value="$USER_HOME$/AppData/Local/SceneBuilder/SceneBuilder.exe" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
@@ -121,7 +110,9 @@
       <workItem from="1623238054031" duration="23000" />
       <workItem from="1623345862633" duration="10284000" />
       <workItem from="1623440677150" duration="2497000" />
-      <workItem from="1623443565027" duration="4144000" />
+      <workItem from="1623443565027" duration="4314000" />
+      <workItem from="1623537976407" duration="972000" />
+      <workItem from="1623582185299" duration="8351000" />
     </task>
     <task id="LOCAL-00001" summary="added handleBackButton">
       <created>1623348034091</created>
@@ -137,7 +128,14 @@
       <option name="project" value="LOCAL" />
       <updated>1623356809688</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Bestände insert and update added&#10;&#10;added template fxml and controller for all tables">
+      <created>1623447869340</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1623447869340</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -158,6 +156,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="added handleBackButton" />
     <MESSAGE value="-delete selected row from all tables&#10;-artifacts&#10;-sql query for create db" />
-    <option name="LAST_COMMIT_MESSAGE" value="-delete selected row from all tables&#10;-artifacts&#10;-sql query for create db" />
+    <MESSAGE value="Bestände insert and update added&#10;&#10;added template fxml and controller for all tables" />
+    <option name="LAST_COMMIT_MESSAGE" value="Bestände insert and update added&#10;&#10;added template fxml and controller for all tables" />
   </component>
 </project>

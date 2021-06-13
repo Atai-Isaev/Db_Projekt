@@ -28,24 +28,24 @@
         </rowConstraints>
          <children>
             <Label text="BestellungNr" />
-            <Label GridPane.columnIndex="1" />
             <Label text="KundeNr" GridPane.rowIndex="1" />
             <Label text="Bestellstatus" GridPane.rowIndex="2" />
             <Label text="Bestelldatum" GridPane.rowIndex="3" />
             <Label text="Bedarfsdatum" GridPane.rowIndex="4" />
             <Label text="Versanddatum" GridPane.rowIndex="5" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <TextField fx:id="bedarfsdatumField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField fx:id="versanddatumField" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             <Label layoutX="10.0" layoutY="331.0" text="GeschäftNr" GridPane.rowIndex="6" />
             <Label layoutX="10.0" layoutY="391.0" text="MitarbeiterNr" GridPane.rowIndex="7" />
-            <ChoiceBox layoutX="190.0" layoutY="207.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-            <ChoiceBox layoutX="190.0" layoutY="207.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-            <ChoiceBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <ChoiceBox fx:id="mitarbeiterNrChoiceBox" layoutX="190.0" layoutY="207.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <ChoiceBox fx:id="geschäftNrChoiceBox" layoutX="190.0" layoutY="207.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <ChoiceBox fx:id="kundeNrChoiceBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="bestelldatumField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="bestellstatusField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <ChoiceBox fx:id="bestellungNrChoiceBox" prefWidth="150.0" GridPane.columnIndex="1" />
          </children>
       </GridPane>
-      <Button layoutX="286.0" layoutY="561.0" mnemonicParsing="false" text="OK" />
-      <Button layoutX="334.0" layoutY="561.0" mnemonicParsing="false" text="Cancel" />
+      <Button layoutX="286.0" layoutY="561.0" mnemonicParsing="false" onAction="#handleOk" text="OK" />
+      <Button layoutX="334.0" layoutY="561.0" mnemonicParsing="false" onAction="#handleCancel" text="Cancel" />
    </children>
 </AnchorPane>

@@ -107,7 +107,7 @@ public class BestaendeCreateDialogController {
         }
     }
 
-    public void setTempArtikel(Bestände bestände) {
+    public void setTempBestände(Bestände bestände) {
         this.tempBestände = bestände;
         // TODO: 29.05.2021
         geschäftNrChoiceBox.setValue(bestände.getGeschäftNr());

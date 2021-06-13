@@ -204,6 +204,9 @@ public class DbOverviewController {
     @FXML
     private Button deleteButton;
 
+    @FXML
+    private Button usersButton;
+
     private final String[] artikelPropertyName = {"ArtikelNr",
             "ArtikelName", "HerstellerNr", "KategorieNr", "Modelljahr", "Listenpreis"};
 
@@ -472,6 +475,10 @@ public class DbOverviewController {
             handleNewBestände();
             beständeObservableList.setAll(beständeDAO.getBeständes());
         }
+        else if (bestellungTab.isSelected()) {
+            handleNewBestellung();
+            bestellungObservableList.setAll(bestellungDAO.getBestellungs());
+        }
         // TODO: 29.05.2021 Rest if for each tab implement
     }
 
@@ -492,8 +499,21 @@ public class DbOverviewController {
         dialogStage.showAndWait();
     }
 
-    public void handleNewBestellung() {
-        // TODO: 29.05.2021 new Bestellung
+    public void handleNewBestellung() throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Main.class.getResource("view/BestellungCreateDialog.fxml"));
+        AnchorPane page = loader.load();
+
+        Stage dialogStage = new Stage();
+        dialogStage.setTitle("Bestellung erstellen");
+        dialogStage.initModality(Modality.WINDOW_MODAL);
+        dialogStage.setScene(new Scene(page));
+
+        BestellungCreateDialogController controller = loader.getController();
+        controller.setDbOverviewControllerNew(this);
+        controller.setMain(this.main);
+        controller.setStage(dialogStage);
+        dialogStage.showAndWait();
     }
 
     public void handleNewBestellungArtikel() {
@@ -548,6 +568,10 @@ public class DbOverviewController {
             handleEditBestände();
             beständeObservableList.setAll(beständeDAO.getBeständes());
         }
+        else if (bestellungTab.isSelected()) {
+            handleEditBestellung();
+            bestellungObservableList.setAll(bestellungDAO.getBestellungs());
+        }
         // TODO: 28.05.2021 Rest Handle edit button impl
     }
 
@@ -584,8 +608,33 @@ public class DbOverviewController {
         alert.showAndWait();
     }
 
-    public void handleEditBestellung() {
-        // TODO: 29.05.2021 edit Bestellung
+    public void handleEditBestellung() throws IOException {
+        Bestellung selectedBestellung = bestellungTableView.getSelectionModel().getSelectedItem();
+
+        if (selectedBestellung != null) {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("view/BestellungCreateDialog.fxml"));
+            AnchorPane page = loader.load();
+
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Bestellung editieren");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.setScene(new Scene(page));
+
+            BestellungCreateDialogController controller = loader.getController();
+            controller.setDbOverviewControllerEdit(this,
+                    selectedBestellung.getBestellungNr(),
+                    selectedBestellung.getKundeNr(),
+                    selectedBestellung.getGeschäftNr(),
+                    selectedBestellung.getMitarbeiterNr());
+            controller.setMain(this.main);
+            controller.setTempBestellung(selectedBestellung);
+
+            controller.setStage(dialogStage);
+            dialogStage.showAndWait();
+        } else {
+            alertNoSelection("Bestellung");
+        }
     }
 
     public void handleEditBestellungArtikel() {
@@ -608,7 +657,7 @@ public class DbOverviewController {
             BestaendeCreateDialogController controller = loader.getController();
             controller.setDbOverviewControllerEdit(this, selectedBestände.getGeschäftNr(), selectedBestände.getArtikelNr());
             controller.setMain(this.main);
-            controller.setTempArtikel(selectedBestände);
+            controller.setTempBestände(selectedBestände);
 
             controller.setStage(dialogStage);
             dialogStage.showAndWait();
@@ -644,12 +693,21 @@ public class DbOverviewController {
             buttonBar.getButtons().remove(newButton);
             buttonBar.getButtons().remove(editButton);
             buttonBar.getButtons().remove(deleteButton);
+            buttonBar.getButtons().remove(usersButton);
+        }
+        else if(this.main.getRole() == DbRole.WRITER){
+            buttonBar.getButtons().remove(usersButton);
         }
     }
 
     @FXML
     private void handleBackButton() {
         main.start(main.getPrimaryStage());
+    }
+
+    @FXML
+    private void handleUsersButton(){
+
     }
 
     public ObservableList<Artikel> getArtikelObservableList() {
