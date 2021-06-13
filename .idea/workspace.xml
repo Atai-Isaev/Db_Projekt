@@ -6,10 +6,12 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bab8ba74-cac0-46df-8e9d-6764e47c70b4" name="Default Changelist" comment="Hersteller insert and update added">
-      <change beforePath="$PROJECT_DIR$/src/com/projekt/model/KategorieDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/projekt/model/KategorieDAO.java" afterDir="false" />
+    <list default="true" id="bab8ba74-cac0-46df-8e9d-6764e47c70b4" name="Default Changelist" comment="Kategorie insert and update added">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/projekt/model/KundeDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/projekt/model/KundeDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/projekt/view/DbOverviewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/projekt/view/DbOverviewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/projekt/view/KategorieCreateDialogController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/projekt/view/KategorieCreateDialogController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/projekt/view/KundeCreateDialog.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/projekt/view/KundeCreateDialog.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/projekt/view/KundeCreateDialogController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/projekt/view/KundeCreateDialogController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,7 +113,7 @@
       <workItem from="1623443565027" duration="4314000" />
       <workItem from="1623537976407" duration="972000" />
       <workItem from="1623582185299" duration="8376000" />
-      <workItem from="1623590867534" duration="16707000" />
+      <workItem from="1623590867534" duration="17701000" />
     </task>
     <task id="LOCAL-00001" summary="added handleBackButton">
       <created>1623348034091</created>
@@ -169,7 +171,14 @@
       <option name="project" value="LOCAL" />
       <updated>1623607853268</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Kategorie insert and update added">
+      <created>1623608533339</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1623608533339</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -196,7 +205,8 @@
     <MESSAGE value="Bestellung_Artikel insert and update added" />
     <MESSAGE value="Geschäft insert and update added" />
     <MESSAGE value="Hersteller insert and update added" />
-    <option name="LAST_COMMIT_MESSAGE" value="Hersteller insert and update added" />
+    <MESSAGE value="Kategorie insert and update added" />
+    <option name="LAST_COMMIT_MESSAGE" value="Kategorie insert and update added" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

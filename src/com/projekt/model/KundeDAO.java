@@ -54,4 +54,38 @@ public class KundeDAO {
         ps.execute();
         ps.close();
     }
+
+    public void insertKunde(Kunde a, String username, String password) throws SQLException {
+        String sql = "INSERT INTO Kunde VALUES (?,?,?,?,?,?,?)";
+
+        connectionToKundeTable(a, username, password, sql);
+    }
+
+    public void updateKunde(Kunde a, String username, String password) throws SQLException {
+        String sql = "UPDATE Kunde SET Vorname = ?," +
+                "Nachname = ?," +
+                "Telefon = ?," +
+                "Email = ?," +
+                "Straße = ?," +
+                "Ort = ?, " +
+                "PLZ = ? " +
+                "WHERE KundeNr = "+a.getKundeNr()+"";
+
+        connectionToKundeTable(a, username, password, sql);
+    }
+
+    private void connectionToKundeTable(Kunde a, String username, String password, String sql) throws SQLException {
+        DatabaseConnection databaseConnection = new DatabaseConnection(username, password);
+        Connection con = databaseConnection.getConnection();
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setString(1, a.getVorname());
+        ps.setString(2, a.getNachname());
+        ps.setString(3, a.getTelefon());
+        ps.setString(4, a.getEmail());
+        ps.setString(5, a.getStraße());
+        ps.setString(6, a.getOrt());
+        ps.setInt(7, Integer.parseInt(a.getPLZ()));
+        ps.execute();
+        ps.close();
+    }
 }

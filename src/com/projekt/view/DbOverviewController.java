@@ -511,6 +511,10 @@ public class DbOverviewController {
             handleNewKategorie();
             kategorieObservableList.setAll(kategorieDAO.getKategories());
         }
+        else if (kundeTab.isSelected()) {
+            handleNewKunde();
+            kundeObservableList.setAll(kundeDAO.getKundes());
+        }
         // TODO: 29.05.2021 Rest if for each tab implement
     }
 
@@ -633,8 +637,21 @@ public class DbOverviewController {
         dialogStage.showAndWait();
     }
 
-    public void handleNewKunde() {
-        // TODO: 29.05.2021 new Kunde
+    public void handleNewKunde() throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Main.class.getResource("view/KundeCreateDialog.fxml"));
+        AnchorPane page = loader.load();
+
+        Stage dialogStage = new Stage();
+        dialogStage.setTitle("Kunde erstellen");
+        dialogStage.initModality(Modality.WINDOW_MODAL);
+        dialogStage.setScene(new Scene(page));
+
+        KundeCreateDialogController controller = loader.getController();
+        controller.setDbOverviewController(this);
+        controller.setMain(this.main);
+        controller.setStage(dialogStage);
+        dialogStage.showAndWait();
     }
 
     public void handleNewMitarbeiter() {
@@ -670,6 +687,10 @@ public class DbOverviewController {
         else if (kategorieTab.isSelected()) {
             handleEditKategorie();
             kategorieObservableList.setAll(kategorieDAO.getKategories());
+        }
+        else if (kundeTab.isSelected()) {
+            handleEditKunde();
+            kundeObservableList.setAll(kundeDAO.getKundes());
         }
         // TODO: 28.05.2021 Rest Handle edit button impl
     }
@@ -861,8 +882,29 @@ public class DbOverviewController {
         }
     }
 
-    public void handleEditKunde() {
-        // TODO: 29.05.2021 edit Kunde
+    public void handleEditKunde() throws IOException {
+        Kunde selectedItem = kundeTableView.getSelectionModel().getSelectedItem();
+
+        if (selectedItem != null) {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("view/KundeCreateDialog.fxml"));
+            AnchorPane page = loader.load();
+
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Kunde editieren");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.setScene(new Scene(page));
+
+            KundeCreateDialogController controller = loader.getController();
+            controller.setDbOverviewController(this);
+            controller.setMain(this.main);
+            controller.setTempKunde(selectedItem);
+
+            controller.setStage(dialogStage);
+            dialogStage.showAndWait();
+        } else {
+            alertNoSelection("Kunde");
+        }
     }
 
     public void handleEditMitarbeiter() {
