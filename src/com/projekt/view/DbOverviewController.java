@@ -507,6 +507,10 @@ public class DbOverviewController {
             handleNewHersteller();
             herstellerObservableList.setAll(herstellerDAO.getHerstellers());
         }
+        else if (kategorieTab.isSelected()) {
+            handleNewKategorie();
+            kategorieObservableList.setAll(kategorieDAO.getKategories());
+        }
         // TODO: 29.05.2021 Rest if for each tab implement
     }
 
@@ -612,8 +616,21 @@ public class DbOverviewController {
         dialogStage.showAndWait();
     }
 
-    public void handleNewKategorie() {
-        // TODO: 29.05.2021 new Kategorie
+    public void handleNewKategorie() throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Main.class.getResource("view/KategorieCreateDialog.fxml"));
+        AnchorPane page = loader.load();
+
+        Stage dialogStage = new Stage();
+        dialogStage.setTitle("Kategorie erstellen");
+        dialogStage.initModality(Modality.WINDOW_MODAL);
+        dialogStage.setScene(new Scene(page));
+
+        KategorieCreateDialogController controller = loader.getController();
+        controller.setDbOverviewController(this);
+        controller.setMain(this.main);
+        controller.setStage(dialogStage);
+        dialogStage.showAndWait();
     }
 
     public void handleNewKunde() {
@@ -626,7 +643,6 @@ public class DbOverviewController {
 
     @FXML
     private void handleEditButton() throws IOException {
-        // TODO: 30.05.2021 Update each Table after edit
         if (artikelTab.isSelected()) {
             handleEditArtikel();
             artikelObservableList.setAll(artikelDAO.getArtikels());
@@ -650,6 +666,10 @@ public class DbOverviewController {
         else if (herstellerTab.isSelected()) {
             handleEditHersteller();
             herstellerObservableList.setAll(herstellerDAO.getHerstellers());
+        }
+        else if (kategorieTab.isSelected()) {
+            handleEditKategorie();
+            kategorieObservableList.setAll(kategorieDAO.getKategories());
         }
         // TODO: 28.05.2021 Rest Handle edit button impl
     }
@@ -816,8 +836,29 @@ public class DbOverviewController {
         }
     }
 
-    public void handleEditKategorie() {
-        // TODO: 29.05.2021 edit Kategorie
+    public void handleEditKategorie() throws IOException {
+        Kategorie selectedItem = kategorieTableView.getSelectionModel().getSelectedItem();
+
+        if (selectedItem != null) {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("view/KategorieCreateDialog.fxml"));
+            AnchorPane page = loader.load();
+
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Kategorie editieren");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.setScene(new Scene(page));
+
+            KategorieCreateDialogController controller = loader.getController();
+            controller.setDbOverviewController(this);
+            controller.setMain(this.main);
+            controller.setTempKategorie(selectedItem);
+
+            controller.setStage(dialogStage);
+            dialogStage.showAndWait();
+        } else {
+            alertNoSelection("Kategorie");
+        }
     }
 
     public void handleEditKunde() {
