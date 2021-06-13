@@ -6,13 +6,12 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bab8ba74-cac0-46df-8e9d-6764e47c70b4" name="Default Changelist" comment="Bestellung insert and update added">
-      <change afterPath="$PROJECT_DIR$/src/com/projekt/view/UserManageDialog.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/projekt/view/UserManageDialogController.java" afterDir="false" />
+    <list default="true" id="bab8ba74-cac0-46df-8e9d-6764e47c70b4" name="Default Changelist" comment="Admin functions started but need fix(1 bug with execute query for acc2)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/projekt/view/DbOverview.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/projekt/view/DbOverview.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/projekt/model/Bestellung_ArtikelDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/projekt/model/Bestellung_ArtikelDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/projekt/view/Bestellung_ArtikelCreateDialog.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/projekt/view/Bestellung_ArtikelCreateDialog.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/projekt/view/Bestellung_ArtikelCreateDialogController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/projekt/view/Bestellung_ArtikelCreateDialogController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/projekt/view/DbOverviewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/projekt/view/DbOverviewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/projekt/view/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/projekt/view/LoginController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,7 +113,7 @@
       <workItem from="1623443565027" duration="4314000" />
       <workItem from="1623537976407" duration="972000" />
       <workItem from="1623582185299" duration="8376000" />
-      <workItem from="1623590867534" duration="8288000" />
+      <workItem from="1623590867534" duration="11547000" />
     </task>
     <task id="LOCAL-00001" summary="added handleBackButton">
       <created>1623348034091</created>
@@ -144,7 +143,14 @@
       <option name="project" value="LOCAL" />
       <updated>1623590567354</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Admin functions started but need fix(1 bug with execute query for acc2)">
+      <created>1623599473891</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1623599473891</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -167,17 +173,7 @@
     <MESSAGE value="-delete selected row from all tables&#10;-artifacts&#10;-sql query for create db" />
     <MESSAGE value="Bestände insert and update added&#10;&#10;added template fxml and controller for all tables" />
     <MESSAGE value="Bestellung insert and update added" />
-    <option name="LAST_COMMIT_MESSAGE" value="Bestellung insert and update added" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/projekt/view/UserManageDialogController.java</url>
-          <line>92</line>
-          <option name="timeStamp" value="13" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="Admin functions started but need fix(1 bug with execute query for acc2)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Admin functions started but need fix(1 bug with execute query for acc2)" />
   </component>
 </project>

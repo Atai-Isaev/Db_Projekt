@@ -29,14 +29,14 @@
             <Label text="Menge" GridPane.rowIndex="2" />
             <Label text="Listenpreis" GridPane.rowIndex="3" />
             <Label text="Rabatt" GridPane.rowIndex="4" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <ChoiceBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <ChoiceBox prefWidth="150.0" GridPane.columnIndex="1" />
+            <TextField fx:id="rabattField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <ChoiceBox fx:id="artikelNrChoiceBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="listenpreisField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="mengeField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <ChoiceBox fx:id="bestellungNrChoiceBox" prefWidth="150.0" GridPane.columnIndex="1" />
          </children>
       </GridPane>
-      <Button layoutX="286.0" layoutY="561.0" mnemonicParsing="false" text="OK" />
-      <Button layoutX="334.0" layoutY="561.0" mnemonicParsing="false" text="Cancel" />
+      <Button layoutX="286.0" layoutY="561.0" mnemonicParsing="false" onAction="#handleOk" text="OK" />
+      <Button layoutX="334.0" layoutY="561.0" mnemonicParsing="false" onAction="#handleCancel" text="Cancel" />
    </children>
 </AnchorPane>

@@ -405,7 +405,7 @@ public class DbOverviewController {
             Bestellung_Artikel bestellung_artikel = bestellung_ArtikelTableView.getSelectionModel().getSelectedItem();
             if (bestellung_artikel != null) {
                 Bestellung_ArtikelDAO bestellung_artikelDAO = new Bestellung_ArtikelDAO();
-                bestellung_artikelDAO.deleteBestellungArtikel(bestellung_artikel, main.getUsername(), main.getPassword());
+                bestellung_artikelDAO.deleteBestellung_Artikel(bestellung_artikel, main.getUsername(), main.getPassword());
                 bestellung_artikelObservableList.setAll(bestellung_artikelDAO.getBestellung_Artikels());
                 handleUpdateAllData();
             } else {
@@ -495,6 +495,10 @@ public class DbOverviewController {
             handleNewBestellung();
             bestellungObservableList.setAll(bestellungDAO.getBestellungs());
         }
+        else if (bestellung_artikelTab.isSelected()) {
+            handleNewBestellungArtikel();
+            bestellung_artikelObservableList.setAll(bestellung_artikelDAO.getBestellung_Artikels());
+        }
         // TODO: 29.05.2021 Rest if for each tab implement
     }
 
@@ -532,8 +536,21 @@ public class DbOverviewController {
         dialogStage.showAndWait();
     }
 
-    public void handleNewBestellungArtikel() {
-        // TODO: 29.05.2021 new BA
+    public void handleNewBestellungArtikel() throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Main.class.getResource("view/Bestellung_ArtikelCreateDialog.fxml"));
+        AnchorPane page = loader.load();
+
+        Stage dialogStage = new Stage();
+        dialogStage.setTitle("Bestellung_Artikel erstellen");
+        dialogStage.initModality(Modality.WINDOW_MODAL);
+        dialogStage.setScene(new Scene(page));
+
+        Bestellung_ArtikelCreateDialogController controller = loader.getController();
+        controller.setDbOverviewControllerNew(this);
+        controller.setMain(this.main);
+        controller.setStage(dialogStage);
+        dialogStage.showAndWait();
     }
 
     public void handleNewBestände() throws IOException {
@@ -587,6 +604,10 @@ public class DbOverviewController {
         else if (bestellungTab.isSelected()) {
             handleEditBestellung();
             bestellungObservableList.setAll(bestellungDAO.getBestellungs());
+        }
+        else if (bestellung_artikelTab.isSelected()) {
+            handleEditBestellungArtikel();
+            bestellung_artikelObservableList.setAll(bestellung_artikelDAO.getBestellung_Artikels());
         }
         // TODO: 28.05.2021 Rest Handle edit button impl
     }
@@ -653,8 +674,29 @@ public class DbOverviewController {
         }
     }
 
-    public void handleEditBestellungArtikel() {
-        // TODO: 29.05.2021 edit BA
+    public void handleEditBestellungArtikel() throws IOException {
+        Bestellung_Artikel selectedItem = bestellung_ArtikelTableView.getSelectionModel().getSelectedItem();
+
+        if (selectedItem != null) {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("view/Bestellung_ArtikelCreateDialog.fxml"));
+            AnchorPane page = loader.load();
+
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Bestellung_Artikel editieren");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.setScene(new Scene(page));
+
+            Bestellung_ArtikelCreateDialogController controller = loader.getController();
+            controller.setDbOverviewControllerEdit(this, selectedItem.getBestellungNr(), selectedItem.getArtikelNr());
+            controller.setMain(this.main);
+            controller.setTempBestellung_Artikel(selectedItem);
+
+            controller.setStage(dialogStage);
+            dialogStage.showAndWait();
+        } else {
+            alertNoSelection("Bestände");
+        }
     }
 
     public void handleEditBestände() throws IOException {

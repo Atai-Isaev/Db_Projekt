@@ -2,6 +2,7 @@ package com.projekt.model;
 
 import com.projekt.connectivity.DatabaseConnection;
 
+import java.math.BigDecimal;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -43,11 +44,43 @@ public class Bestellung_ArtikelDAO {
         return list;
     }
 
-    public void deleteBestellungArtikel(Bestellung_Artikel bestellung_artikel, String username, String password) throws SQLException {
+    public void deleteBestellung_Artikel(Bestellung_Artikel bestellung_artikel, String username, String password) throws SQLException {
         String sql = "DELETE FROM Bestellung_Artikel WHERE ArtikelNr = "+bestellung_artikel.getArtikelNr()+" AND BestellungNr = "+bestellung_artikel.getBestellungNr()+"";
         DatabaseConnection databaseConnection = new DatabaseConnection(username, password);
         Connection con = databaseConnection.getConnection();
         PreparedStatement ps = con.prepareStatement(sql);
+        ps.execute();
+        ps.close();
+    }
+
+    public void insertBestellung_Artikel(Bestellung_Artikel b, String username, String password) throws SQLException {
+        String sql = "INSERT INTO Bestellung_Artikel VALUES (?,?,?,?,?)";
+
+        connectionToBestellung_ArtikelTable(b, username, password, sql);
+    }
+
+    public void updateBestellung_Artikel(Bestellung_Artikel b, String username, String password) throws SQLException {
+        String sql = "UPDATE Bestellung_Artikel SET Menge = ?, Listenpreis = ?, Rabatt = ? WHERE BestellungNr = "+b.getBestellungNr()+" AND ArtikelNr = "+b.getArtikelNr();
+
+        DatabaseConnection databaseConnection = new DatabaseConnection(username, password);
+        Connection con = databaseConnection.getConnection();
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setInt(1, b.getMenge());
+        ps.setBigDecimal(2, b.getListenpreis());
+        ps.setBigDecimal(3, b.getRabatt());
+        ps.execute();
+        ps.close();
+    }
+
+    private void connectionToBestellung_ArtikelTable(Bestellung_Artikel b, String username, String password, String sql) throws SQLException {
+        DatabaseConnection databaseConnection = new DatabaseConnection(username, password);
+        Connection con = databaseConnection.getConnection();
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setInt(1, b.getBestellungNr());
+        ps.setInt(2, b.getArtikelNr());
+        ps.setInt(3, b.getMenge());
+        ps.setBigDecimal(4, b.getListenpreis());
+        ps.setBigDecimal(5, b.getRabatt());
         ps.execute();
         ps.close();
     }
