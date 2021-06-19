@@ -21,7 +21,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
-        this.primaryStage.setTitle("JDBC GUI App");
+        this.primaryStage.setTitle("Lucky Bike Projekt");
 
         showLogin();
     }
@@ -35,6 +35,8 @@ public class Main extends Application {
             Scene scene = new Scene(dbOverview);
             primaryStage.setScene(scene);
             primaryStage.show();
+            primaryStage.setResizable(true);
+//            primaryStage.setMaximized(true);
 
             DbOverviewController controller = loader.getController();
             controller.setMain(this);
@@ -53,6 +55,8 @@ public class Main extends Application {
             Scene scene = new Scene(login);
             primaryStage.setScene(scene);
             primaryStage.show();
+            primaryStage.setResizable(false);
+//            primaryStage.setMaximized(false);
 
             LoginController controller = loader.getController();
             controller.setMainApp(this);

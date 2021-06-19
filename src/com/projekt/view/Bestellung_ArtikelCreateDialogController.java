@@ -134,7 +134,7 @@ public class Bestellung_ArtikelCreateDialogController {
 
     public void setTempBestellung_Artikel(Bestellung_Artikel bestellung_artikel) {
         this.tempBestellung_Artikel = bestellung_artikel;
-        // TODO: 29.05.2021
+
         bestellungNrChoiceBox.setValue(bestellung_artikel.getBestellungNr());
         artikelNrChoiceBox.setValue(bestellung_artikel.getArtikelNr());
         mengeField.setText(String.valueOf(bestellung_artikel.getMenge()));

@@ -206,7 +206,6 @@ public class UserManageDialogController {
 
     public void setTempArtikel(Artikel tempArtikel) {
 //        this.tempArtikel = tempArtikel;
-//        // TODO: 29.05.2021 Add if case when create new Artikel(Label isue)
 //        artikelNrLabel.setText(String.valueOf(tempArtikel.getArtikelNr()));
 //        artikelNameField.setText(tempArtikel.getArtikelName());
 //        herstellerNrChoiceBox.setValue(tempArtikel.getHerstellerNr());

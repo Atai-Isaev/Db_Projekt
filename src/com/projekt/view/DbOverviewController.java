@@ -530,6 +530,7 @@ public class DbOverviewController {
         dialogStage.setTitle("Artikel create");
         dialogStage.initModality(Modality.WINDOW_MODAL);
         dialogStage.setScene(new Scene(page));
+        dialogStage.setResizable(false);
 
         ArtikelCreateDialogController controller = loader.getController();
         controller.setDbOverviewController(this);
@@ -547,6 +548,7 @@ public class DbOverviewController {
         dialogStage.setTitle("Bestellung create");
         dialogStage.initModality(Modality.WINDOW_MODAL);
         dialogStage.setScene(new Scene(page));
+        dialogStage.setResizable(false);
 
         BestellungCreateDialogController controller = loader.getController();
         controller.setDbOverviewControllerNew(this);
@@ -564,6 +566,7 @@ public class DbOverviewController {
         dialogStage.setTitle("Bestellung_Artikel create");
         dialogStage.initModality(Modality.WINDOW_MODAL);
         dialogStage.setScene(new Scene(page));
+        dialogStage.setResizable(false);
 
         Bestellung_ArtikelCreateDialogController controller = loader.getController();
         controller.setDbOverviewControllerNew(this);
@@ -581,6 +584,7 @@ public class DbOverviewController {
         dialogStage.setTitle("Bestände create");
         dialogStage.initModality(Modality.WINDOW_MODAL);
         dialogStage.setScene(new Scene(page));
+        dialogStage.setResizable(false);
 
         BestaendeCreateDialogController controller = loader.getController();
         controller.setDbOverviewControllerNew(this);
@@ -598,6 +602,7 @@ public class DbOverviewController {
         dialogStage.setTitle("Geschäft create");
         dialogStage.initModality(Modality.WINDOW_MODAL);
         dialogStage.setScene(new Scene(page));
+        dialogStage.setResizable(false);
 
         GeschaeftCreateDialogController controller = loader.getController();
         controller.setDbOverviewController(this);
@@ -615,6 +620,7 @@ public class DbOverviewController {
         dialogStage.setTitle("Hersteller create");
         dialogStage.initModality(Modality.WINDOW_MODAL);
         dialogStage.setScene(new Scene(page));
+        dialogStage.setResizable(false);
 
         HerstellerCreateDialogController controller = loader.getController();
         controller.setDbOverviewController(this);
@@ -632,6 +638,7 @@ public class DbOverviewController {
         dialogStage.setTitle("Kategorie create");
         dialogStage.initModality(Modality.WINDOW_MODAL);
         dialogStage.setScene(new Scene(page));
+        dialogStage.setResizable(false);
 
         KategorieCreateDialogController controller = loader.getController();
         controller.setDbOverviewController(this);
@@ -649,6 +656,7 @@ public class DbOverviewController {
         dialogStage.setTitle("Kunde create");
         dialogStage.initModality(Modality.WINDOW_MODAL);
         dialogStage.setScene(new Scene(page));
+        dialogStage.setResizable(false);
 
         KundeCreateDialogController controller = loader.getController();
         controller.setDbOverviewController(this);
@@ -666,6 +674,7 @@ public class DbOverviewController {
         dialogStage.setTitle("Mitarbeiter create");
         dialogStage.initModality(Modality.WINDOW_MODAL);
         dialogStage.setScene(new Scene(page));
+        dialogStage.setResizable(false);
 
         MitarbeiterCreateDialogController controller = loader.getController();
         controller.setDbOverviewController(this);
@@ -726,6 +735,7 @@ public class DbOverviewController {
             dialogStage.setTitle("Artikel editieren");
             dialogStage.initModality(Modality.WINDOW_MODAL);
             dialogStage.setScene(new Scene(page));
+            dialogStage.setResizable(false);
 
             ArtikelCreateDialogController controller = loader.getController();
             controller.setDbOverviewController(this);
@@ -759,6 +769,7 @@ public class DbOverviewController {
             dialogStage.setTitle("Bestellung editieren");
             dialogStage.initModality(Modality.WINDOW_MODAL);
             dialogStage.setScene(new Scene(page));
+            dialogStage.setResizable(false);
 
             BestellungCreateDialogController controller = loader.getController();
             controller.setDbOverviewControllerEdit(this,
@@ -788,6 +799,7 @@ public class DbOverviewController {
             dialogStage.setTitle("Bestellung_Artikel editieren");
             dialogStage.initModality(Modality.WINDOW_MODAL);
             dialogStage.setScene(new Scene(page));
+            dialogStage.setResizable(false);
 
             Bestellung_ArtikelCreateDialogController controller = loader.getController();
             controller.setDbOverviewControllerEdit(this, selectedItem.getBestellungNr(), selectedItem.getArtikelNr());
@@ -813,6 +825,7 @@ public class DbOverviewController {
             dialogStage.setTitle("Bestände editieren");
             dialogStage.initModality(Modality.WINDOW_MODAL);
             dialogStage.setScene(new Scene(page));
+            dialogStage.setResizable(false);
 
             BestaendeCreateDialogController controller = loader.getController();
             controller.setDbOverviewControllerEdit(this, selectedBestände.getGeschäftNr(), selectedBestände.getArtikelNr());
@@ -838,6 +851,7 @@ public class DbOverviewController {
             dialogStage.setTitle("Geschäft editieren");
             dialogStage.initModality(Modality.WINDOW_MODAL);
             dialogStage.setScene(new Scene(page));
+            dialogStage.setResizable(false);
 
             GeschaeftCreateDialogController controller = loader.getController();
             controller.setDbOverviewController(this);
@@ -863,6 +877,7 @@ public class DbOverviewController {
             dialogStage.setTitle("Hersteller editieren");
             dialogStage.initModality(Modality.WINDOW_MODAL);
             dialogStage.setScene(new Scene(page));
+            dialogStage.setResizable(false);
 
             HerstellerCreateDialogController controller = loader.getController();
             controller.setDbOverviewController(this);
@@ -888,6 +903,7 @@ public class DbOverviewController {
             dialogStage.setTitle("Kategorie editieren");
             dialogStage.initModality(Modality.WINDOW_MODAL);
             dialogStage.setScene(new Scene(page));
+            dialogStage.setResizable(false);
 
             KategorieCreateDialogController controller = loader.getController();
             controller.setDbOverviewController(this);
@@ -913,6 +929,7 @@ public class DbOverviewController {
             dialogStage.setTitle("Kunde editieren");
             dialogStage.initModality(Modality.WINDOW_MODAL);
             dialogStage.setScene(new Scene(page));
+            dialogStage.setResizable(false);
 
             KundeCreateDialogController controller = loader.getController();
             controller.setDbOverviewController(this);
@@ -938,6 +955,7 @@ public class DbOverviewController {
             dialogStage.setTitle("Mitarbeiter editieren");
             dialogStage.initModality(Modality.WINDOW_MODAL);
             dialogStage.setScene(new Scene(page));
+            dialogStage.setResizable(false);
 
             MitarbeiterCreateDialogController controller = loader.getController();
             controller.setDbOverviewController(this);
@@ -967,7 +985,7 @@ public class DbOverviewController {
 
     @FXML
     private void handleBackButton() {
-        main.start(main.getPrimaryStage());
+        main.showLogin();
     }
 
     @FXML

@@ -38,7 +38,7 @@ public class Bestellung_Artikel {
         return Menge;
     }
 
-    @XmlElement(name = "Listenpreis")
+    @XmlElement(name = "Menge")
     public void setMenge(int menge) {
         Menge = menge;
     }

@@ -175,7 +175,7 @@ public class BestellungCreateDialogController {
 
     public void setTempBestellung(Bestellung bestellung) {
         this.tempBestellung = bestellung;
-        // TODO: 29.05.2021
+
         bestellungNrChoiceBox.setValue(bestellung.getBestellungNr());
         kundeNrChoiceBox.setValue(bestellung.getKundeNr());
         bestellstatusField.setText(String.valueOf(bestellung.getBestellstatus()));
