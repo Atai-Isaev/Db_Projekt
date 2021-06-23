@@ -1,11 +1,14 @@
 package com.projekt.view;
 
 import com.projekt.Main;
+import com.projekt.model.Artikel;
 import com.projekt.model.Bestände;
 import com.projekt.model.BeständeDAO;
+import com.projekt.model.Geschäft;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -19,25 +22,34 @@ public class BestaendeCreateDialogController {
     private Bestände tempBestände;
 
     @FXML
-    private ChoiceBox<Integer> geschäftNrChoiceBox = new ChoiceBox<>();
+    private ComboBox<Geschäft> geschäftComboBox;
     @FXML
-    private ChoiceBox<Integer> artikelNrChoiceBox = new ChoiceBox<>();
+    private ComboBox<Artikel> artikelComboBox;
     @FXML
     private TextField mengeField;
 
     public void setDbOverviewControllerNew(DbOverviewController dbOverviewController) {
         this.dbOverviewController = dbOverviewController;
 
-        dbOverviewController.getGeschäftObservableList().forEach(geschäft ->
-                geschäftNrChoiceBox.getItems().add(geschäft.getGeschäftNr()));
-        dbOverviewController.getArtikelObservableList().forEach(artikel ->
-                artikelNrChoiceBox.getItems().add(artikel.getArtikelNr()));
+        geschäftComboBox.setItems(dbOverviewController.getGeschäftObservableList());
+        artikelComboBox.setItems(dbOverviewController.getArtikelObservableList());
+
+//        dbOverviewController.getGeschäftObservableList().forEach(geschäft ->
+//                geschäftNrChoiceBox.getItems().add(geschäft.getGeschäftNr()));
+//        dbOverviewController.getArtikelObservableList().forEach(artikel ->
+//                artikelNrChoiceBox.getItems().add(artikel.getArtikelNr()));
     }
 
     public void setDbOverviewControllerEdit(DbOverviewController dbOverviewController, Integer g, Integer a) {
         this.dbOverviewController = dbOverviewController;
-        geschäftNrChoiceBox.getItems().add(g);
-        artikelNrChoiceBox.getItems().add(a);
+        geschäftComboBox.getItems().add(dbOverviewController.getGeschäftObservableList().stream().
+                filter(geschäft -> g == geschäft.getGeschäftNr()).
+                findFirst().
+                orElse(null));
+        artikelComboBox.getItems().add(dbOverviewController.getArtikelObservableList().stream().
+                filter(artikel -> a == artikel.getArtikelNr()).
+                findFirst().
+                orElse(null));
     }
 
 
@@ -58,8 +70,8 @@ public class BestaendeCreateDialogController {
     private void handleOk() throws SQLException {
         if (isInputValid()) {
             Bestände bestände = new Bestände();
-            bestände.setGeschäftNr(geschäftNrChoiceBox.getSelectionModel().getSelectedItem());
-            bestände.setArtikelNr(artikelNrChoiceBox.getSelectionModel().getSelectedItem());
+            bestände.setGeschäftNr(geschäftComboBox.getSelectionModel().getSelectedItem().getGeschäftNr());
+            bestände.setArtikelNr(artikelComboBox.getSelectionModel().getSelectedItem().getArtikelNr());
             bestände.setMenge(Integer.parseInt(mengeField.getText()));
 
             BeständeDAO beständeDAO = new BeständeDAO();
@@ -76,10 +88,10 @@ public class BestaendeCreateDialogController {
     private boolean isInputValid() {
         String errorMessage = "";
 
-        if (geschäftNrChoiceBox.getSelectionModel().getSelectedItem() == null) {
+        if (geschäftComboBox.getSelectionModel().getSelectedItem() == null) {
             errorMessage += "No valid geschäftNr!\n";
         }
-        if (artikelNrChoiceBox.getSelectionModel().getSelectedItem() == null) {
+        if (artikelComboBox.getSelectionModel().getSelectedItem() == null) {
             errorMessage += "No valid artikelNr!\n";
         }
         if (mengeField.getText() == null || mengeField.getText().length() == 0) {
@@ -110,8 +122,14 @@ public class BestaendeCreateDialogController {
     public void setTempBestände(Bestände bestände) {
         this.tempBestände = bestände;
 
-        geschäftNrChoiceBox.setValue(bestände.getGeschäftNr());
-        artikelNrChoiceBox.setValue(bestände.getArtikelNr());
+        geschäftComboBox.setValue(dbOverviewController.getGeschäftObservableList().stream().
+                filter(geschäft -> bestände.getGeschäftNr()== geschäft.getGeschäftNr()).
+                findFirst().
+                orElse(null));
+        artikelComboBox.setValue(dbOverviewController.getArtikelObservableList().stream().
+                filter(artikel -> bestände.getArtikelNr() == artikel.getArtikelNr()).
+                findFirst().
+                orElse(null));
         mengeField.setText(String.valueOf(bestände.getMenge()));
     }
 }

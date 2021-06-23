@@ -93,15 +93,6 @@ public class Bestellung {
 
     @Override
     public String toString() {
-        return "Bestellung{" +
-                "BestellungNr=" + BestellungNr +
-                ", KundeNr=" + KundeNr +
-                ", Bestellstatus=" + Bestellstatus +
-                ", Bestelldatum=" + Bestelldatum +
-                ", Bedarfsdatum=" + Bedarfsdatum +
-                ", Versanddatum=" + Versanddatum +
-                ", GeschäftNr=" + GeschäftNr +
-                ", MitarbeiterNr=" + MitarbeiterNr +
-                '}';
+        return "ID = " + BestellungNr + ", KundeNr = " + KundeNr + ", Bestelldatum = " + Bestelldatum;
     }
 }

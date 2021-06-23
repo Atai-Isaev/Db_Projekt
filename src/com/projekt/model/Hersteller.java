@@ -32,9 +32,6 @@ public class Hersteller {
 
     @Override
     public String toString() {
-        return "Hersteller{" +
-                "HerstellerNr=" + HerstellerNr +
-                ", HerstellerName='" + HerstellerName + '\'' +
-                '}';
+        return "ID = " + HerstellerNr +", " + HerstellerName;
     }
 }

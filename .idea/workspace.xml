@@ -6,21 +6,27 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bab8ba74-cac0-46df-8e9d-6764e47c70b4" name="Default Changelist" comment="Mitarbeiter insert and update added">
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/Db_Projekt_jar.xml" afterDir="false" />
+    <list default="true" id="bab8ba74-cac0-46df-8e9d-6764e47c70b4" name="Default Changelist" comment="final commit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/additional_files/Db_Projekt_v1.rar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/additional_files/sql_Db_Projekt.sql" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/projekt/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/projekt/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/projekt/model/Bestellung_Artikel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/projekt/model/Bestellung_Artikel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/projekt/model/Artikel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/projekt/model/Artikel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/projekt/model/Bestellung.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/projekt/model/Bestellung.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/projekt/model/Geschäft.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/projekt/model/Geschäft.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/projekt/model/Hersteller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/projekt/model/Hersteller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/projekt/model/Kategorie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/projekt/model/Kategorie.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/projekt/model/Kunde.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/projekt/model/Kunde.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/projekt/model/Mitarbeiter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/projekt/model/Mitarbeiter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/projekt/view/ArtikelCreateDialog.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/projekt/view/ArtikelCreateDialog.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/projekt/view/ArtikelCreateDialogController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/projekt/view/ArtikelCreateDialogController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/projekt/view/BestaendeCreateDialog.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/projekt/view/BestaendeCreateDialog.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/projekt/view/BestaendeCreateDialogController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/projekt/view/BestaendeCreateDialogController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/projekt/view/BestellungCreateDialog.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/projekt/view/BestellungCreateDialog.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/projekt/view/BestellungCreateDialogController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/projekt/view/BestellungCreateDialogController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/projekt/view/Bestellung_ArtikelCreateDialog.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/projekt/view/Bestellung_ArtikelCreateDialog.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/projekt/view/Bestellung_ArtikelCreateDialogController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/projekt/view/Bestellung_ArtikelCreateDialogController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/projekt/view/DbOverviewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/projekt/view/DbOverviewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/projekt/view/Login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/projekt/view/Login.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/projekt/view/UserManageDialogController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/projekt/view/UserManageDialogController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/projekt/view/MitarbeiterCreateDialog.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/projekt/view/MitarbeiterCreateDialog.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/projekt/view/MitarbeiterCreateDialogController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/projekt/view/MitarbeiterCreateDialogController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,15 +96,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -127,7 +131,12 @@
       <workItem from="1623619743220" duration="672000" />
       <workItem from="1623863224502" duration="59000" />
       <workItem from="1624101379481" duration="5742000" />
-      <workItem from="1624107546134" duration="714000" />
+      <workItem from="1624107546134" duration="1473000" />
+      <workItem from="1624109518381" duration="32000" />
+      <workItem from="1624110047580" duration="1544000" />
+      <workItem from="1624221403887" duration="2958000" />
+      <workItem from="1624266111909" duration="3368000" />
+      <workItem from="1624442394549" duration="6144000" />
     </task>
     <task id="LOCAL-00001" summary="added handleBackButton">
       <created>1623348034091</created>
@@ -206,7 +215,14 @@
       <option name="project" value="LOCAL" />
       <updated>1623610879691</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="final commit">
+      <created>1624108552128</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1624108552128</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -236,7 +252,8 @@
     <MESSAGE value="Kategorie insert and update added" />
     <MESSAGE value="Kunde insert and update added" />
     <MESSAGE value="Mitarbeiter insert and update added" />
-    <option name="LAST_COMMIT_MESSAGE" value="Mitarbeiter insert and update added" />
+    <MESSAGE value="final commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="final commit" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -70,4 +70,10 @@ public class Artikel {
     public void setListenpreis(BigDecimal listenpreis) {
         Listenpreis = listenpreis;
     }
+
+    @Override
+    public String toString() {
+        return "ID = " + ArtikelNr +
+                ", " + ArtikelName;
+    }
 }

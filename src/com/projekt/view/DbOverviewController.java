@@ -958,9 +958,9 @@ public class DbOverviewController {
             dialogStage.setResizable(false);
 
             MitarbeiterCreateDialogController controller = loader.getController();
-            controller.setDbOverviewController(this);
             controller.setMain(this.main);
             controller.setTempMitarbeiter(selectedItem);
+            controller.setDbOverviewController(this);
 
             controller.setStage(dialogStage);
             dialogStage.showAndWait();

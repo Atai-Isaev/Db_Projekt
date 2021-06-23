@@ -32,9 +32,6 @@ public class Kategorie {
 
     @Override
     public String toString() {
-        return "Kategorie{" +
-                "KategorieNr=" + KategorieNr +
-                ", KategorieName='" + KategorieName + '\'' +
-                '}';
+        return "ID = " + KategorieNr + ", " + KategorieName;
     }
 }

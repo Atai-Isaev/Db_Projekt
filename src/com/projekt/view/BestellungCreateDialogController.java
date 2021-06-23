@@ -1,11 +1,10 @@
 package com.projekt.view;
 
 import com.projekt.Main;
-import com.projekt.model.Bestellung;
-import com.projekt.model.BestellungDAO;
+import com.projekt.model.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
-import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -13,7 +12,6 @@ import javafx.stage.Stage;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class BestellungCreateDialogController {
 
@@ -24,9 +22,13 @@ public class BestellungCreateDialogController {
     private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
     @FXML
-    private ChoiceBox<Integer> bestellungNrChoiceBox = new ChoiceBox<>();
+    private ComboBox<Bestellung> bestellungComboBox;
     @FXML
-    private ChoiceBox<Integer> kundeNrChoiceBox = new ChoiceBox<>();
+    private ComboBox<Kunde> kundeComboBox;
+    @FXML
+    private ComboBox<Geschäft> geschäftComboBox;
+    @FXML
+    private ComboBox<Mitarbeiter> mitarbeiterComboBox;
     @FXML
     private TextField bestellstatusField;
     @FXML
@@ -35,33 +37,47 @@ public class BestellungCreateDialogController {
     private TextField bedarfsdatumField;
     @FXML
     private TextField versanddatumField;
-    @FXML
-    private ChoiceBox<Integer> geschäftNrChoiceBox = new ChoiceBox<>();
-    @FXML
-    private ChoiceBox<Integer> mitarbeiterNrChoiceBox = new ChoiceBox<>();
+
 
     public void setDbOverviewControllerNew(DbOverviewController dbOverviewController) {
-        choiceBoxFill(dbOverviewController);
+        comboBoxFill(dbOverviewController);
     }
 
     public void setDbOverviewControllerEdit(DbOverviewController dbOverviewController, Integer b, Integer k, Integer g, Integer m) {
-        choiceBoxFill(dbOverviewController);
-
-        bestellungNrChoiceBox.getItems().add(b);
-        kundeNrChoiceBox.getItems().add(k);
-        geschäftNrChoiceBox.getItems().add(g);
-        mitarbeiterNrChoiceBox.getItems().add(m);
-    }
-
-    private void choiceBoxFill(DbOverviewController dbOverviewController) {
+//        comboBoxFill(dbOverviewController);
         this.dbOverviewController = dbOverviewController;
 
-        dbOverviewController.getKundeObservableList().forEach(kunde ->
-                kundeNrChoiceBox.getItems().add(kunde.getKundeNr()));
-        dbOverviewController.getGeschäftObservableList().forEach(geschäft ->
-                geschäftNrChoiceBox.getItems().add(geschäft.getGeschäftNr()));
-        dbOverviewController.getMitarbeiterObservableList().forEach(mitarbeiter ->
-                mitarbeiterNrChoiceBox.getItems().add(mitarbeiter.getMitarbeiterNr()));
+        bestellungComboBox.getItems().add(dbOverviewController.getBestellungObservableList().stream().
+                filter(bestellung -> b == bestellung.getBestellungNr()).
+                findFirst().
+                orElse(null));
+        kundeComboBox.getItems().add(dbOverviewController.getKundeObservableList().stream().
+                filter(kunde -> k == kunde.getKundeNr()).
+                findFirst().
+                orElse(null));
+        geschäftComboBox.getItems().add(dbOverviewController.getGeschäftObservableList().stream().
+                filter(geschäft -> g == geschäft.getGeschäftNr()).
+                findFirst().
+                orElse(null));
+        mitarbeiterComboBox.getItems().add(dbOverviewController.getMitarbeiterObservableList().stream().
+                filter(mitarbeiter -> m == mitarbeiter.getMitarbeiterNr()).
+                findFirst().
+                orElse(null));
+    }
+
+    private void comboBoxFill(DbOverviewController dbOverviewController) {
+
+
+        kundeComboBox.setItems(dbOverviewController.getKundeObservableList());
+        geschäftComboBox.setItems(dbOverviewController.getGeschäftObservableList());
+        mitarbeiterComboBox.setItems(dbOverviewController.getMitarbeiterObservableList());
+
+//        dbOverviewController.getKundeObservableList().forEach(kunde ->
+//                kundeNrChoiceBox.getItems().add(kunde.getKundeNr()));
+//        dbOverviewController.getGeschäftObservableList().forEach(geschäft ->
+//                geschäftNrChoiceBox.getItems().add(geschäft.getGeschäftNr()));
+//        dbOverviewController.getMitarbeiterObservableList().forEach(mitarbeiter ->
+//                mitarbeiterNrChoiceBox.getItems().add(mitarbeiter.getMitarbeiterNr()));
     }
 
     public void setStage(Stage stage) {
@@ -81,20 +97,20 @@ public class BestellungCreateDialogController {
     private void handleOk() throws SQLException, ParseException {
         if (isInputValid()) {
             Bestellung bestellung = new Bestellung();
-            bestellung.setKundeNr(kundeNrChoiceBox.getSelectionModel().getSelectedItem());
+            bestellung.setKundeNr(kundeComboBox.getSelectionModel().getSelectedItem().getKundeNr());
             bestellung.setBestellstatus(Integer.parseInt(bestellstatusField.getText()));
             bestellung.setBestelldatum(simpleDateFormat.parse(bestelldatumField.getText()));
             bestellung.setBedarfsdatum(simpleDateFormat.parse(bedarfsdatumField.getText()));
             bestellung.setVersanddatum(simpleDateFormat.parse(versanddatumField.getText()));
-            bestellung.setGeschäftNr(geschäftNrChoiceBox.getSelectionModel().getSelectedItem());
-            bestellung.setMitarbeiterNr(mitarbeiterNrChoiceBox.getSelectionModel().getSelectedItem());
+            bestellung.setGeschäftNr(geschäftComboBox.getSelectionModel().getSelectedItem().getGeschäftNr());
+            bestellung.setMitarbeiterNr(mitarbeiterComboBox.getSelectionModel().getSelectedItem().getMitarbeiterNr());
 
             BestellungDAO bestellungDAO = new BestellungDAO();
 
             if (tempBestellung == null) {
                 bestellungDAO.insertBestellung(bestellung, main.getUsername(), main.getPassword());
             } else {
-                bestellung.setBestellungNr(bestellungNrChoiceBox.getSelectionModel().getSelectedItem());
+                bestellung.setBestellungNr(bestellungComboBox.getSelectionModel().getSelectedItem().getBestellungNr());
                 bestellungDAO.updateBestellung(bestellung, main.getUsername(), main.getPassword());
             }
             stage.close();
@@ -104,7 +120,7 @@ public class BestellungCreateDialogController {
     private boolean isInputValid() throws ParseException {
         String errorMessage = "";
 
-        if (kundeNrChoiceBox.getSelectionModel().getSelectedItem() == null) {
+        if (kundeComboBox.getSelectionModel().getSelectedItem() == null) {
             errorMessage += "No valid kundeNr!\n";
         }
 
@@ -126,7 +142,7 @@ public class BestellungCreateDialogController {
                 simpleDateFormat.parse(bestelldatumField.getText());
             }
             catch (ParseException e){
-                errorMessage += "No valid bestelldatum. Use the format dd.MM.yyyy!\n";
+                errorMessage += "No valid bestelldatum. Use the format yyyy-MM-dd!\n";
             }
         }
         if (bedarfsdatumField.getText() == null || bedarfsdatumField.getText().length() == 0) {
@@ -136,7 +152,7 @@ public class BestellungCreateDialogController {
                 simpleDateFormat.parse(bedarfsdatumField.getText());
             }
             catch (ParseException e){
-                errorMessage += "No valid bedarfsdatumField. Use the format dd.MM.yyyy!\n";
+                errorMessage += "No valid bedarfsdatumField. Use the format yyyy-MM-dd!\n";
             }
         }
         if (versanddatumField.getText() == null || versanddatumField.getText().length() == 0) {
@@ -146,13 +162,13 @@ public class BestellungCreateDialogController {
                 simpleDateFormat.parse(versanddatumField.getText());
             }
             catch (ParseException e){
-                errorMessage += "No valid versanddatumField. Use the format dd.MM.yyyy!\n";
+                errorMessage += "No valid versanddatumField. Use the format yyyy-MM-dd!\n";
             }
         }
-        if (geschäftNrChoiceBox.getSelectionModel().getSelectedItem() == null) {
+        if (geschäftComboBox.getSelectionModel().getSelectedItem() == null) {
             errorMessage += "No valid geschäftNr!\n";
         }
-        if (mitarbeiterNrChoiceBox.getSelectionModel().getSelectedItem() == null) {
+        if (mitarbeiterComboBox.getSelectionModel().getSelectedItem() == null) {
             errorMessage += "No valid mitarbeiterNr!\n";
         }
 
@@ -173,16 +189,28 @@ public class BestellungCreateDialogController {
         }
     }
 
-    public void setTempBestellung(Bestellung bestellung) {
-        this.tempBestellung = bestellung;
+    public void setTempBestellung(Bestellung b) {
+        this.tempBestellung = b;
 
-        bestellungNrChoiceBox.setValue(bestellung.getBestellungNr());
-        kundeNrChoiceBox.setValue(bestellung.getKundeNr());
-        bestellstatusField.setText(String.valueOf(bestellung.getBestellstatus()));
-        bestelldatumField.setText(String.valueOf(bestellung.getBestelldatum()));
-        bedarfsdatumField.setText(String.valueOf(bestellung.getBedarfsdatum()));
-        versanddatumField.setText(String.valueOf(bestellung.getVersanddatum()));
-        geschäftNrChoiceBox.setValue(bestellung.getGeschäftNr());
-        mitarbeiterNrChoiceBox.setValue(bestellung.getMitarbeiterNr());
+        bestellungComboBox.setValue(dbOverviewController.getBestellungObservableList().stream().
+                filter(bestellung -> b.getBestellungNr() == bestellung.getBestellungNr()).
+                findFirst().
+                orElse(null));
+        kundeComboBox.setValue(dbOverviewController.getKundeObservableList().stream().
+                filter(kunde -> b.getKundeNr() == kunde.getKundeNr()).
+                findFirst().
+                orElse(null));
+        bestellstatusField.setText(String.valueOf(b.getBestellstatus()));
+        bestelldatumField.setText(String.valueOf(b.getBestelldatum()));
+        bedarfsdatumField.setText(String.valueOf(b.getBedarfsdatum()));
+        versanddatumField.setText(String.valueOf(b.getVersanddatum()));
+        geschäftComboBox.setValue(dbOverviewController.getGeschäftObservableList().stream().
+                filter(geschäft -> b.getGeschäftNr() == geschäft.getGeschäftNr()).
+                findFirst().
+                orElse(null));
+        mitarbeiterComboBox.setValue(dbOverviewController.getMitarbeiterObservableList().stream().
+                filter(mitarbeiter -> b.getMitarbeiterNr() == mitarbeiter.getMitarbeiterNr()).
+                findFirst().
+                orElse(null));
     }
 }

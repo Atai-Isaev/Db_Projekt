@@ -1,11 +1,13 @@
 package com.projekt.view;
 
 import com.projekt.Main;
+import com.projekt.model.Artikel;
+import com.projekt.model.Bestellung;
 import com.projekt.model.Bestellung_Artikel;
 import com.projekt.model.Bestellung_ArtikelDAO;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
-import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -20,9 +22,9 @@ public class Bestellung_ArtikelCreateDialogController {
     private Bestellung_Artikel tempBestellung_Artikel;
 
     @FXML
-    private ChoiceBox<Integer> bestellungNrChoiceBox = new ChoiceBox<>();
+    private ComboBox<Bestellung> bestellungComboBox;
     @FXML
-    private ChoiceBox<Integer> artikelNrChoiceBox = new ChoiceBox<>();
+    private ComboBox<Artikel> artikelComboBox;
     @FXML
     private TextField mengeField;
     @FXML
@@ -33,16 +35,25 @@ public class Bestellung_ArtikelCreateDialogController {
     public void setDbOverviewControllerNew(DbOverviewController dbOverviewController) {
         this.dbOverviewController = dbOverviewController;
 
-        dbOverviewController.getBestellungObservableList().forEach(bestellung ->
-                bestellungNrChoiceBox.getItems().add(bestellung.getBestellungNr()));
-        dbOverviewController.getArtikelObservableList().forEach(artikel ->
-                artikelNrChoiceBox.getItems().add(artikel.getArtikelNr()));
+        bestellungComboBox.setItems(dbOverviewController.getBestellungObservableList());
+        artikelComboBox.setItems(dbOverviewController.getArtikelObservableList());
+
+//        dbOverviewController.getBestellungObservableList().forEach(bestellung ->
+//                bestellungNrComboBox.getItems().add(bestellung.getBestellungNr()));
+//        dbOverviewController.getArtikelObservableList().forEach(artikel ->
+//                artikelNrComboBox.getItems().add(artikel.getArtikelNr()));
     }
 
     public void setDbOverviewControllerEdit(DbOverviewController dbOverviewController, Integer g, Integer a) {
         this.dbOverviewController = dbOverviewController;
-        bestellungNrChoiceBox.getItems().add(g);
-        artikelNrChoiceBox.getItems().add(a);
+        bestellungComboBox.getItems().add(dbOverviewController.getBestellungObservableList().stream().
+                filter(bestellung -> g == bestellung.getBestellungNr()).
+                findFirst().
+                orElse(null));
+        artikelComboBox.getItems().add(dbOverviewController.getArtikelObservableList().stream().
+                filter(artikel -> a == artikel.getArtikelNr()).
+                findFirst().
+                orElse(null));
     }
 
 
@@ -63,8 +74,8 @@ public class Bestellung_ArtikelCreateDialogController {
     private void handleOk() throws SQLException {
         if (isInputValid()) {
             Bestellung_Artikel bestellung_artikel = new Bestellung_Artikel();
-            bestellung_artikel.setBestellungNr(bestellungNrChoiceBox.getSelectionModel().getSelectedItem());
-            bestellung_artikel.setArtikelNr(artikelNrChoiceBox.getSelectionModel().getSelectedItem());
+            bestellung_artikel.setBestellungNr(bestellungComboBox.getSelectionModel().getSelectedItem().getBestellungNr());
+            bestellung_artikel.setArtikelNr(artikelComboBox.getSelectionModel().getSelectedItem().getArtikelNr());
             bestellung_artikel.setMenge(Integer.parseInt(mengeField.getText()));
             bestellung_artikel.setListenpreis(new BigDecimal(listenpreisField.getText()));
             bestellung_artikel.setRabatt(new BigDecimal(rabattField.getText()));
@@ -83,10 +94,21 @@ public class Bestellung_ArtikelCreateDialogController {
     private boolean isInputValid() {
         String errorMessage = "";
 
-        if (bestellungNrChoiceBox.getSelectionModel().getSelectedItem() == null) {
-            errorMessage += "No valid bestellungNrChoiceBox!\n";
+
+        Bestellung_Artikel containsBestellungArtikel = dbOverviewController.getBestellung_artikelObservableList().stream()
+                .filter(bestellung_artikel ->
+                        bestellungComboBox.getSelectionModel().getSelectedItem().getBestellungNr() == bestellung_artikel.getBestellungNr()
+                ).
+                        filter(bestellung_artikel -> artikelComboBox.getSelectionModel().getSelectedItem().getArtikelNr() == bestellung_artikel.getArtikelNr()).
+                        findFirst().
+                        orElse(null);
+        if (containsBestellungArtikel != null) {
+            errorMessage += "No valid bestellungNrComboBox and artikelComboBox!\n";
         }
-        if (artikelNrChoiceBox.getSelectionModel().getSelectedItem() == null) {
+        if (bestellungComboBox.getSelectionModel().getSelectedItem() == null) {
+            errorMessage += "No valid bestellungNrComboBox!\n";
+        }
+        if (artikelComboBox.getSelectionModel().getSelectedItem() == null) {
             errorMessage += "No valid artikelNr!\n";
         }
         if (mengeField.getText() == null || mengeField.getText().length() == 0) {
@@ -135,8 +157,14 @@ public class Bestellung_ArtikelCreateDialogController {
     public void setTempBestellung_Artikel(Bestellung_Artikel bestellung_artikel) {
         this.tempBestellung_Artikel = bestellung_artikel;
 
-        bestellungNrChoiceBox.setValue(bestellung_artikel.getBestellungNr());
-        artikelNrChoiceBox.setValue(bestellung_artikel.getArtikelNr());
+        bestellungComboBox.setValue(dbOverviewController.getBestellungObservableList().stream().
+                filter(bestellung -> bestellung_artikel.getBestellungNr() == bestellung.getBestellungNr()).
+                findFirst().
+                orElse(null));
+        artikelComboBox.setValue(dbOverviewController.getArtikelObservableList().stream().
+                filter(artikel -> bestellung_artikel.getArtikelNr() == artikel.getArtikelNr()).
+                findFirst().
+                orElse(null));
         mengeField.setText(String.valueOf(bestellung_artikel.getMenge()));
         listenpreisField.setText(String.valueOf(bestellung_artikel.getListenpreis()));
         rabattField.setText(String.valueOf(bestellung_artikel.getRabatt()));

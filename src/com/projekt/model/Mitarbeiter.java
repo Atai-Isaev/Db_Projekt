@@ -82,14 +82,6 @@ public class Mitarbeiter {
 
     @Override
     public String toString() {
-        return "Mitarbeiter{" +
-                "MitarbeiterNr=" + MitarbeiterNr +
-                ", Vorname='" + Vorname + '\'' +
-                ", Nachname='" + Nachname + '\'' +
-                ", Email='" + Email + '\'' +
-                ", Telefon='" + Telefon + '\'' +
-                ", Aktiv=" + Aktiv +
-                ", GeschäftNr=" + GeschäftNr +
-                '}';
+        return "ID = " + MitarbeiterNr +", Vorname = " + Vorname +", Nachname = " + Nachname;
     }
 }

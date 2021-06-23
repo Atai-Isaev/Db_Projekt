@@ -3,11 +3,10 @@ package com.projekt.view;
 import com.projekt.Main;
 import com.projekt.model.Artikel;
 import com.projekt.model.ArtikelDAO;
+import com.projekt.model.Hersteller;
+import com.projekt.model.Kategorie;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -26,9 +25,9 @@ public class ArtikelCreateDialogController {
     @FXML
     private TextField artikelNameField;
     @FXML
-    private ChoiceBox<Integer> herstellerNrChoiceBox = new ChoiceBox<>();
+    private ComboBox<Hersteller> herstellerComboBox;
     @FXML
-    private ChoiceBox<Integer> kategorieNrChoiceBox = new ChoiceBox<>();
+    private ComboBox<Kategorie> kategorieComboBox;
     @FXML
     private TextField modelljahrField;
     @FXML
@@ -37,10 +36,13 @@ public class ArtikelCreateDialogController {
     public void setDbOverviewController(DbOverviewController dbOverviewController) {
         this.dbOverviewController = dbOverviewController;
 
-        dbOverviewController.getHerstellerObservableList().forEach(hersteller ->
-                herstellerNrChoiceBox.getItems().add(hersteller.getHerstellerNr()));
-        dbOverviewController.getKategorieObservableList().forEach(kategorie ->
-                kategorieNrChoiceBox.getItems().add(kategorie.getKategorieNr()));
+        herstellerComboBox.setItems(dbOverviewController.getHerstellerObservableList());
+        kategorieComboBox.setItems(dbOverviewController.getKategorieObservableList());
+
+//        dbOverviewController.getHerstellerObservableList().forEach(hersteller ->
+//                herstellerNrChoiceBox.getItems().add(hersteller.getHerstellerNr()));
+//        dbOverviewController.getKategorieObservableList().forEach(kategorie ->
+//                kategorieNrChoiceBox.getItems().add(kategorie.getKategorieNr()));
     }
 
 
@@ -63,8 +65,8 @@ public class ArtikelCreateDialogController {
             Artikel artikel = new Artikel();
             if (tempArtikel != null) artikel.setArtikelNr(Integer.parseInt(artikelNrLabel.getText()));
             artikel.setArtikelName(artikelNameField.getText());
-            artikel.setHerstellerNr(herstellerNrChoiceBox.getSelectionModel().getSelectedItem());
-            artikel.setKategorieNr(kategorieNrChoiceBox.getSelectionModel().getSelectedItem());
+            artikel.setHerstellerNr(herstellerComboBox.getSelectionModel().getSelectedItem().getHerstellerNr());
+            artikel.setKategorieNr(kategorieComboBox.getSelectionModel().getSelectedItem().getKategorieNr());
             artikel.setModelljahr(Integer.parseInt(modelljahrField.getText()));
             artikel.setListenpreis(new BigDecimal(listenpreisField.getText()));
 
@@ -85,10 +87,10 @@ public class ArtikelCreateDialogController {
         if (artikelNameField.getText() == null || artikelNameField.getText().length() == 0) {
             errorMessage += "No valid artikelNameField!\n";
         }
-        if (herstellerNrChoiceBox.getSelectionModel().getSelectedItem() == null) {
+        if (herstellerComboBox.getSelectionModel().getSelectedItem() == null) {
             errorMessage += "No valid herstellerNr!\n";
         }
-        if (kategorieNrChoiceBox.getSelectionModel().getSelectedItem() == null) {
+        if (kategorieComboBox.getSelectionModel().getSelectedItem() == null) {
             errorMessage += "No valid kategorieNr!\n";
         }
         if (modelljahrField.getText() == null || modelljahrField.getText().length() == 0) {
@@ -130,8 +132,14 @@ public class ArtikelCreateDialogController {
 
         artikelNrLabel.setText(String.valueOf(tempArtikel.getArtikelNr()));
         artikelNameField.setText(tempArtikel.getArtikelName());
-        herstellerNrChoiceBox.setValue(tempArtikel.getHerstellerNr());
-        kategorieNrChoiceBox.setValue(tempArtikel.getKategorieNr());
+        herstellerComboBox.setValue(dbOverviewController.getHerstellerObservableList().stream().
+                filter(hersteller -> tempArtikel.getHerstellerNr() == hersteller.getHerstellerNr()).
+                findFirst().
+                orElse(null));
+        kategorieComboBox.setValue(dbOverviewController.getKategorieObservableList().stream().
+                filter(kategorie -> tempArtikel.getKategorieNr() == kategorie.getKategorieNr()).
+                findFirst().
+                orElse(null));
         modelljahrField.setText(String.valueOf(tempArtikel.getModelljahr()));
         listenpreisField.setText(tempArtikel.getListenpreis().toPlainString());
     }

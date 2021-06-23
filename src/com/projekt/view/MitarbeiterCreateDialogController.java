@@ -39,9 +39,16 @@ public class MitarbeiterCreateDialogController {
     public void setDbOverviewController(DbOverviewController dbOverviewController) {
         this.dbOverviewController = dbOverviewController;
 
-        dbOverviewController.getGeschäftObservableList().forEach(geschäft ->
-                geschäftNrChoiceBox.getItems().add(geschäft.getGeschäftNr()));
         geschäftNrChoiceBox.getItems().add(0);
+        dbOverviewController.getMitarbeiterObservableList().forEach(mitarbeiter ->
+        {
+            if (tempMitarbeiter != null && tempMitarbeiter.getMitarbeiterNr()==mitarbeiter.getMitarbeiterNr()) {
+
+            }
+            else geschäftNrChoiceBox.getItems().add(mitarbeiter.getMitarbeiterNr());
+
+        });
+
     }
 
     public void setStage(Stage stage) {
@@ -102,7 +109,7 @@ public class MitarbeiterCreateDialogController {
         }
         if (aktivField.getText() == null || aktivField.getText().length() == 0) {
             errorMessage += "No valid aktivField!\n";
-        }else {
+        } else {
             try {
                 Integer.parseInt(aktivField.getText());
             } catch (NumberFormatException e) {

@@ -82,14 +82,7 @@ public class Geschäft {
 
     @Override
     public String toString() {
-        return "Geschäft{" +
-                "GeschäftNr=" + GeschäftNr +
-                ", GeschäftName='" + GeschäftName + '\'' +
-                ", Telefon='" + Telefon + '\'' +
-                ", Email='" + Email + '\'' +
-                ", Straße='" + Straße + '\'' +
-                ", Ort='" + Ort + '\'' +
-                ", PLZ='" + PLZ + '\'' +
-                '}';
+        return "ID = " + GeschäftNr +
+                ", " + GeschäftName;
     }
 }

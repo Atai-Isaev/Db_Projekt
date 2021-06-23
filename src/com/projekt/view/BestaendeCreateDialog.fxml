@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.projekt.view.BestaendeCreateDialogController">
+<AnchorPane prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.projekt.view.BestaendeCreateDialogController">
    <children>
       <GridPane layoutX="155.0" layoutY="77.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
         <columnConstraints>
@@ -21,9 +27,9 @@
             <Label text="ArtikelNr" GridPane.rowIndex="1" />
             <Label GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Label text="Menge" GridPane.rowIndex="2" />
-            <ChoiceBox fx:id="artikelNrChoiceBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="mengeField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <ChoiceBox fx:id="geschäftNrChoiceBox" prefWidth="150.0" GridPane.columnIndex="1" />
+            <ComboBox fx:id="geschäftComboBox" prefWidth="150.0" GridPane.columnIndex="1" />
+            <ComboBox fx:id="artikelComboBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
       <Button layoutX="286.0" layoutY="561.0" mnemonicParsing="false" onAction="#handleOk" text="OK" />

@@ -35,7 +35,6 @@ public class Main extends Application {
             Scene scene = new Scene(dbOverview);
             primaryStage.setScene(scene);
             primaryStage.show();
-            primaryStage.setResizable(true);
 //            primaryStage.setMaximized(true);
 
             DbOverviewController controller = loader.getController();
